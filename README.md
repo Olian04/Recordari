@@ -28,9 +28,6 @@ const failRecord = RSettings({
 });
 ```
 
-R is a record builder and it returns a record constructor which in turn returns a record. 
-The builder is used to construct a strict pattern that a record must follow. 
-
 ## Constraints: 
 (Note: in docs all constraints should either a) say that they are an alias of another constraint or b) describe what it does and what Ordo (time complexity) it has) 
 
