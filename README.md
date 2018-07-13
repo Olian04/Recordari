@@ -35,7 +35,7 @@ const failRecord = RSettings({
 	* Not
 	* Exact
 	* Any === *() 
-	* Choice === Select === OneOf 
+	* Choice === Select === OneOf === Either
 
 * Number
 	* Integer
