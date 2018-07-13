@@ -1,5 +1,3 @@
-# Record.js
-
 ![logo](logo.png)
 
 > Record.js is a constraint based data verification library. <br>
