@@ -1,8 +1,6 @@
 ![logo](logo.png)
 
-> Record.js is a constraint based data verification library. <br>
-> Javascript has always suffered from the "curse" of dynamic ducktyping. It makes development fast and prototyping simple, but it comes with some major drawbacks. One of which is that accessing data can (and should, according to ecmascript) fail silently and without a trace. <br>
-> Record.js aims to help fix this by providing an easy way of making sure that data reforms to the schema that you've provided. Most importatly it wont fail silently, it will scream!
+> Record.js is a constraint based type enforcement system for vanilla js.
 
 ```ts
 const R = require('record.js');
