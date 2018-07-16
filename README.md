@@ -5,7 +5,7 @@
 ```ts
 const R = require('record.js');
 
-const RSettings = R({
+const RSettings = R('Settings', {
   foo: R.Number.Natural, 
   bar: R.Array.String.Choise(['a', 'b']), 
   biz: R.Object({
