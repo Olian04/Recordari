@@ -3,7 +3,7 @@
 > Record.js is a constraint based type enforcement system for vanilla js.
 
 
-Fiddle WIP: https://jsfiddle.net/524brseg/408/
+Fiddle WIP: https://jsfiddle.net/524brseg/410
 
 ```ts
 const R = require('record.js');
