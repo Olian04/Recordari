@@ -33,7 +33,7 @@ const failRecord = RSettings({
 (Note: in docs all constraints should either a) say that they are an alias of another constraint or b) describe what it does and what Ordo (time complexity) it has) 
 
 * [AllTypes] 
-	* Not
+	* Not // Maybe not... This is really hard to do? 
 	* Exact
 	* Any === *() 
 	* Choice === Select === OneOf === Either
@@ -57,3 +57,10 @@ const failRecord = RSettings({
 	* Matches === Regex
 
 * Boolean 
+  * True
+  * False 
+
+* Function
+  * Arguments
+    * Length
+    * Contains
