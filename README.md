@@ -1,7 +1,7 @@
 ![logo](logo.png)
 
 > Record.js is a constraint based type enforcement system for vanilla js.
-
+> Record.js draws insperation from the way webpack handels its configuration file.
 
 Fiddle WIP: https://jsfiddle.net/524brseg/410
 
@@ -38,7 +38,8 @@ const failRecord = RSettings({
   bar: ['c'], //                    Error: 'c' is not in ['a', 'b'] 
   biz: { baz: 1.654, boo: 'd' }, // Error: boo does not exist on object biz
   baz: 'hello', //                  Error: Length is not either less than 3 or greater than 9
-  boz: (a, b, c) => a //            Error: Does not take exacly 2 arguments that maches /\d$/ + running the function with args (1, 2) does not return 3
+  boz: (a, b, c) => a, //           Error: Does not take exacly 2 arguments that maches /\d$/ + running the function with args (1, 2) does not return 3
+  hello: 'Record.js' //             Error: Unexpected key 'hello' on 'Settings' record.
 });
 ```
 
@@ -88,4 +89,21 @@ const failRecord = RSettings({
 
 ## Internal design (WIP)
 
-
+```ts
+const nodeTypes = {
+  Number: { ... },
+  String: { ... },
+  Boolean: { ... },
+  Array: { ... },
+  Function: { ... },
+  Function_Arguments: { ... },
+  Final: { ... },
+};
+const createNode = (type: string) => {
+  [internal]: {
+    call: () => { ... },
+    children: [ ... ]
+  },
+  ...nodeTypes[type]
+}
+```
