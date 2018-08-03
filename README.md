@@ -54,7 +54,7 @@ const failRecord = RSettings({
   * Boolean: Boolean
   * Function: Function
   * Array: Array
-  * Object(obj): Object
+  * Object: Object
   * Any: Final
 * Number
   * Max(num): Number
@@ -91,6 +91,7 @@ const failRecord = RSettings({
 * Object
   * Values: Array
   * Keys: Array
+  * Object?? // Needs a better name... { foo: { a: R.String } } == { foo: R.Object.Object({ a: R.String }) }
 * Final
 
 ## Internal design (WIP)
