@@ -1,6 +1,7 @@
 const R = require('Record.js');
 /**
   Defines a Record for a majority of webpack options
+  Webpack options: https://webpack.js.org/configuration/
 */
 module.exports.RWebpackConfig = R('webpack.config.js', {
   mode: R.String.Either(["production", "development", "none"]),
