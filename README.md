@@ -64,6 +64,8 @@ const failRecord = RSettings({
   * Any: Number
 * String
   * Length: Number
+  * Exact(str): String
+  * Either(str[]): String
   * Contains(str): String
   * Matches(regex): String
   * Any: Fianl
