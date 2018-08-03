@@ -3,6 +3,8 @@
 > Record.js is a constraint based type enforcement system for vanilla js. <br>
 > Record.js draws insperation from the way webpack handels its configuration file.
 
+[Webpack example](examples/RWebpackConfig.js)
+
 Fiddle WIP: https://jsfiddle.net/524brseg/410
 
 ```ts
