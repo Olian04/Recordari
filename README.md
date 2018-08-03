@@ -10,7 +10,7 @@ const R = require('record.js');
 
 const RSettings = R('Settings', {
   foo: R.Number.Natural, 
-  bar: R.Array.String.Choise(['a', 'b']), 
+  bar: R.Array.String.Either(['a', 'b']), 
   biz: {
     baz: R.Number.Between(0, 8)
   },
