@@ -12,7 +12,7 @@ const RSettings = R('Settings', {
   foo: R.Number.Natural, 
   bar: R.Array.String.Choise(['a', 'b']), 
   biz: {
-    baz: R.Number.Max(8).Min(0)
+    baz: R.Number.Between(0, 8)
   },
   baz: R.or([
     R.String.Length.Max(2),
