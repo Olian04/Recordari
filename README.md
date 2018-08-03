@@ -54,6 +54,7 @@ const failRecord = RSettings({
   * Boolean: Boolean
   * Function: Function
   * Array: Array
+  * Object(obj): Object
   * Any: Final
 * Number
   * Max(num): Number
@@ -87,6 +88,9 @@ const failRecord = RSettings({
   * Contains(str): Array
   * Each: R
   * Any: Final
+* Object
+  * Values: Array
+  * Keys: Array
 * Final
 
 ## Internal design (WIP)
