@@ -5,7 +5,9 @@
 
 [Webpack example](examples/RWebpackConfig.js)
 
-Fiddle WIP: https://jsfiddle.net/524brseg/410
+Fiddle WIP: https://jsfiddle.net/ua1zj9Lk/89/
+
+~~Old WIP: https://jsfiddle.net/524brseg/410~~
 
 ```ts
 const R = require('record.js');
