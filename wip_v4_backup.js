@@ -91,6 +91,14 @@ const R_Base = (root, self) => ({
       children: Rs.map(r => r[rootSymbol])
     });
     return R_Void(root);
+  },
+  get not() {
+    self.children.push({
+      type: 'Not',
+      data: [],
+      children: []
+    });
+    return R_Base(root, self.children[0])
   }
 });
 
@@ -143,6 +151,9 @@ const assert = (value, root) => {
     if (type === 'Or') {
       return children.reduce((res, child) => res || _assert(value, child), false);
     }
+    if (type === 'Not') {
+      return !_assert(value, children[0]);
+    }
     return false;
 	};
   return _assert(value, root[rootSymbol]);
@@ -180,3 +191,14 @@ const vvvv = R.Array.Each.or([
 console.log('or', vvvv);
 console.log([2, [5]], assert([2, [5]], vvvv));
 console.log([2, '5'], assert([2, '5'], vvvv));
+
+const w = R.not.Number;
+console.log('not', w);
+console.log('2', assert('2', w));
+console.log(2, assert(2, w));
+
+const ww = R.Array.Each.not.Number;
+console.log('each not', ww);
+console.log(['1', [2], false], assert(['1', [2], false], ww));
+console.log(['1', 2, true], assert(['1', 2, true], ww));
+
