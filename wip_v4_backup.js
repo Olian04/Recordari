@@ -1,3 +1,13 @@
+Array.zip = (...args) => {
+  const lastArg = args.pop();
+  const zipper = typeof lastArg === 'function'
+    ? lastArg : (...args) => args;
+  const arrays = typeof lastArg === 'function'
+    ? args : [...args, lastArg];
+  const maxLength = Math.max(...arrays.map(arr => arr.length));
+  return Array(maxLength).fill().map((_, i) => zipper(...arrays.map(arr => arr[i])));
+}
+
 const rootSymbol = Symbol('R-root');
 
 const R_Void = root => ({
@@ -17,6 +27,14 @@ const R_Number = (root, self) => ({
   Min(val) {
     self.children.push({
       type: 'Min',
+      data: [val],
+      children: []
+    });
+    return R_Number(root, self.children[0]);
+  },
+  Exact(val) {
+    self.children.push({
+      type: 'Exact',
       data: [val],
       children: []
     });
@@ -55,6 +73,14 @@ const R_Array = (root, self) => ({
       children: []
     });
     return R_Base(root, self.children[0]);
+  },
+  Like(Rs) {
+    self.children.push({
+      type: 'Like',
+      data: [],
+      children: Rs.map(r => r[rootSymbol])
+    });
+    return R_Void(root);
   }
 });
 
@@ -124,6 +150,7 @@ const predicates = {
   Number: v => typeof v === 'number',
   Max: (v, [a]) => v <= a,  
   Min: (v, [a]) => v >= a,
+  Exact: (v, [a]) => v === a
 }
 const extractions = {
   Length: v => v.length
@@ -153,6 +180,9 @@ const assert = (value, root) => {
     }
     if (type === 'Not') {
       return !_assert(value, children[0]);
+    }
+    if (type === 'Like') {
+      return (value.length === children.length) && Array.zip(value, children).reduce((res, [value, child]) => res && _assert(value, child), true);
     }
     return false;
 	};
@@ -202,3 +232,12 @@ console.log('each not', ww);
 console.log(['1', [2], false], assert(['1', [2], false], ww));
 console.log(['1', 2, true], assert(['1', 2, true], ww));
 
+const www = R.Array.Like([
+  R.Number.Exact(1),
+  R.Number.Exact(2)
+]);
+console.log('array like', www);
+console.log([1, 2], assert([1, 2], www));
+console.log([1, 3], assert([1, 3], www));
+console.log([0, 2], assert([0, 2], www));
+console.log(['1', 2], assert(['1', 2], www));
