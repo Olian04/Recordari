@@ -75,6 +75,14 @@ const R_Base = (root, self) => ({
       children: Rs.map(r => r[rootSymbol])
     });
     return R_Void(root);
+  },
+  or(Rs) {
+  	self.children.push({
+      type: 'Or',
+      data: [],
+      children: Rs.map(r => r[rootSymbol])
+    });
+    return R_Void(root);
   }
 });
 
@@ -121,6 +129,9 @@ const assert = (value, root) => {
     if (type === 'And') {
       return children.reduce((res, child) => res && _assert(value, child), true);
     }
+    if (type === 'Or') {
+      return children.reduce((res, child) => res || _assert(value, child), false);
+    }
     return false;
 	};
   return _assert(value, root[rootSymbol]);
@@ -144,3 +155,12 @@ console.log(vvv);
 console.log([2, 5], assert([2, 5], vvv));
 console.log([1, 5], assert([1, 5], vvv));
 console.log([2, 6], assert([2, 6], vvv));
+console.log([1, 6], assert([1, 6], vvv));
+
+const vvvv = R.Array.Each.or([
+ R.Number,
+ R.Array
+]);
+console.log(vvvv);
+console.log([2, [5]], assert([2, [5]], vvvv));
+console.log([2, '5'], assert([2, '5'], vvvv));
