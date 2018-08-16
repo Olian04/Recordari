@@ -1,5 +1,6 @@
 Array.zip = (...arrays) => Array(Math.max(...arrays.map(arr => arr.length))).fill().map((_, i) => arrays.map(arr => arr[i]));
 
+// START OF "API" LEVEL
 const rootSymbol = Symbol('R-root');
 
 const R_Void = root => ({
@@ -131,9 +132,8 @@ const R = new Proxy({}, {
   }
 });
 
-const v = R.Array.Length.Max(2).Max(3);
-console.log(v);
-
+// END OF "API" LEVEL
+// START OF "IMPLEMENTATION" LEVEL
 
 // All predicates and extractions must have the signature: (value, args[]) => boolean
 const predicates = {
@@ -181,8 +181,8 @@ const assert = (value, root) => {
   return _assert(value, root[rootSymbol]);
 };
 
-console.log([1, 2], assert([1, 2], v));
-console.log([1, 2, 3], assert([1, 2, 3], v));
+// END OF "IMPLEMENTATION" LEVEL
+// START OF "TESTING"
 
 const vv = R.Array.Each.Number.Max(5);
 console.log('each', vv);
