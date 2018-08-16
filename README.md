@@ -7,7 +7,7 @@
 
 Fiddle WIP: https://jsfiddle.net/ua1zj9Lk/311/
 
-~~Old WIP: https://jsfiddle.net/524brseg/410~~
+~~Old WIP: https://jsfiddle.net/524brseg/410/~~
 
 ```ts
 const R = require('record.js');
