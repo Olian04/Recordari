@@ -5,7 +5,7 @@
 
 [Webpack example](examples/RWebpackConfig.js)
 
-Fiddle WIP v4: https://jsfiddle.net/09ouas1m/291/
+Fiddle WIP v4: https://jsfiddle.net/09ouas1m/298/
 
 ~~Fiddle WIP v3: https://jsfiddle.net/ua1zj9Lk/343/~~
 
