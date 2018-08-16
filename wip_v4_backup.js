@@ -47,6 +47,14 @@ const R_Array = (root, self) => ({
       children: []
     });
     return R_Base(root, self.children[0]);
+  },
+  get Contains() {
+    self.children.push({
+      type: 'Contains',
+      data: [],
+      children: []
+    });
+    return R_Base(root, self.children[0]);
   }
 });
 
@@ -126,6 +134,9 @@ const assert = (value, root) => {
     if (type === 'Each') {
       return value.reduce((res, val) => res && _assert(val, children[0]), true);
     }
+    if (type === 'Contains') {
+      return value.reduce((res, val) => res || _assert(val, children[0]), false);
+    }
     if (type === 'And') {
       return children.reduce((res, child) => res && _assert(value, child), true);
     }
@@ -141,17 +152,22 @@ console.log([1, 2], assert([1, 2], v));
 console.log([1, 2, 3], assert([1, 2, 3], v));
 
 const vv = R.Array.Each.Number.Max(5);
-console.log(vv);
-
+console.log('each', vv);
 console.log([1, 2, 3], assert([1, 2, 3], vv));
 console.log([1, 2, '3'], assert([1, 2, '3'], vv));
 console.log([1, 7, 3], assert([1, 7, 3], vv));
+
+const vv_ = R.Array.Contains.Number.Min(5);
+console.log('contains', vv_);
+console.log([1, 6], assert([1, 6], vv_));
+console.log([6,'3'], assert([6, '3'], vv_));
+console.log([1, 2, 3], assert([1, 2, 3], vv_));
 
 const vvv = R.Array.Each.and([
  R.Number.Max(5),
  R.Number.Min(2)
 ]);
-console.log(vvv);
+console.log('and', vvv);
 console.log([2, 5], assert([2, 5], vvv));
 console.log([1, 5], assert([1, 5], vvv));
 console.log([2, 6], assert([2, 6], vvv));
@@ -161,6 +177,6 @@ const vvvv = R.Array.Each.or([
  R.Number,
  R.Array
 ]);
-console.log(vvvv);
+console.log('or', vvvv);
 console.log([2, [5]], assert([2, [5]], vvvv));
 console.log([2, '5'], assert([2, '5'], vvvv));
