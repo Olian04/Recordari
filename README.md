@@ -5,7 +5,7 @@
 
 [Webpack example](examples/RWebpackConfig.js)
 
-Fiddle WIP v4: https://jsfiddle.net/09ouas1m/228/
+Fiddle WIP v4: https://jsfiddle.net/09ouas1m/252/
 
 ~~Fiddle WIP v3: https://jsfiddle.net/ua1zj9Lk/343/~~
 
@@ -53,8 +53,8 @@ const failRecord = RSettings({
 
 * R
   * not: R
-  * or(R[]): Final
-  * and(R[]): Final
+  * or(R[]): Void
+  * and(R[]): Void
   * Number: Number
   * String: String
   * Boolean: Boolean
@@ -62,46 +62,39 @@ const failRecord = RSettings({
   * Array: Array
   * Object: Object
   * Regex: Regex
-  * Any: Final
 * Number
   * Max(num): Number
   * Min(num): Number
   * Exact(num): Number
   * Either(num[]): Number  
   * Between(num_a, num_b): Number
-  * Any: Number
 * String
   * Length: Number
   * Exact(str): String
   * Either(str[]): String
-  * Contains(str): String
   * Matches(regex): String
-  * Any: Fianl
 * Boolean
   * True: Fianl
   * False: Final
-  * Any: Final
 * Function
   * Arguments: Function_Arguments 
   * Test(...args): R
-  * Any: Final
 * Function_Arguments
   * Length: Number
-  * Contains(str): Function_Arguments
+  * Contains: String
   * Each: String
-  * Any: Final
 * Array
   * Length: Number
-  * Contains(str): Array
+  * Contains: R
   * Each: R
-  * Any: Final
+  * Like(array): Void
 * Object
   * Values: Array
   * Keys: Array
-  * Like(obj): Object // Needs a better name... { foo: { a: R.String } } == { foo: R.Object.Object({ a: R.String }) }
+  * Like(obj): Void 
 * Regex
   * Test(str): Boolean
-* Final
+* Void
 
 ## Internal design (WIP)
 
