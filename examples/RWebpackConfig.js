@@ -28,11 +28,10 @@ module.exports.RWebpackConfig = R('webpack.config.js', {
     rules: R.Array.Each.Object.Like({
       test: R.Regex,
       include: R.Array.Each.String,
-      exclude: R.optional.Array.Each.String,
-      enforce: R.optional.String,
-      enforce: R.optional.String,
+      'exclude?': R.Array.Each.String,
+      'enforce?': R.String,
       loader: R.String,
-      options: R.optional.Object.Like({
+      'options?': R.Object.Like({
         presets: R.Array.String
       })
     })
@@ -40,7 +39,7 @@ module.exports.RWebpackConfig = R('webpack.config.js', {
   resolve: {
     modules: R.Array.Each.String,
     extensions: R.Array.Each.String,
-    alias: R.optional.and([
+    'alias?': R.and([
       R.Object.Keys.Each.String,
       R.Object.Values.Each.String
     ]),
