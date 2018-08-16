@@ -233,3 +233,4 @@ console.log([1, 2], assert([1, 2], www));
 console.log([1, 3], assert([1, 3], www));
 console.log([0, 2], assert([0, 2], www));
 console.log(['1', 2], assert(['1', 2], www));
+console.log([1, 2, 3], assert([1, 2, 3], www));
