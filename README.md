@@ -74,8 +74,8 @@ const failRecord = RSettings({
   * Either(str[]): String
   * Matches(regex): String
 * Boolean
-  * True: Fianl
-  * False: Final
+  * True: Void
+  * False: Void
 * Function
   * Arguments: Function_Arguments 
   * Test(...args): R
