@@ -55,15 +55,18 @@ const failRecord = RSettings({
 const ROptionals = R('Optionals', {
   foo: R.Number, // Required
   'bar?': R.Number, // Optional, but need to be a number if pressent
+  'bar!': 2,
   '?': R.Number // '?' applies to all unknown keys, if its missing then unknown keys are prohibited
 });
 
 const okRecord = ROptionals({
   foo: 1,
+  // bar = 2
   biz: 3
 });
 
-const okRecord = ROptionals({
+
+const failRecord = ROptionals({
   foo: '1', //                 Error: Not a number
   bar: '2', //                 Error: Not a number
   biz: '3' //                  Error: Not a number
