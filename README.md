@@ -80,8 +80,11 @@ const failRecord = ROptionals({
 const { Assert, R } = require('record.js');
 
 const constraint = R.Array.Each.Number;
-Assert([1, 2, 3], constraint); // OK
-Assert([1, '2', 3], constraint); // Error: Expected array index 1 to be a number but got a string
+const trueAssert = Assert([1, 2, 3], constraint);
+const falseAssert = Assert([1, '2', 3], constraint);
+Assert([1, '2', 3], constraint, e =>
+  throw new Error(e) // Error: Expected array index 1 to be a number to got a string
+);
 ```
 
 ## Constraint types:
