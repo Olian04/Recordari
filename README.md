@@ -53,7 +53,7 @@ const failRecord = RSettings({
 ```ts
 const { Record, R } = require('record.js');
 
-const ROptionals = R('Optionals', {
+const ROptionals = Record('Optionals', {
   foo: R.Number, // Required
   'bar?': R.Number, // Optional, but need to be a number if pressent
   'bar!': 2,
@@ -65,7 +65,6 @@ const okRecord = ROptionals({
   // bar = 2
   biz: 3
 });
-
 
 const failRecord = ROptionals({
   foo: '1', //                 Error: Not a number
@@ -80,8 +79,11 @@ const failRecord = ROptionals({
 const { Assert, R } = require('record.js');
 
 const constraint = R.Array.Each.Number;
+
 const trueAssert = Assert([1, 2, 3], constraint);
+
 const falseAssert = Assert([1, '2', 3], constraint);
+
 Assert([1, '2', 3], constraint, e =>
   throw new Error(e) // Error: Expected array index 1 to be a number to got a string
 );
