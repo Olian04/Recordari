@@ -12,9 +12,9 @@ Fiddle WIP v4: https://jsfiddle.net/09ouas1m/304/
 ~~Fiddle WIP v2: https://jsfiddle.net/524brseg/410/~~
 
 ```ts
-const R = require('record.js');
+const { Record, R } = require('record.js');
 
-const RSettings = R('Settings', {
+const RSettings = Record('Settings', {
   foo: R.Number.Natural, 
   bar: R.Array.Each.String.Either(['a', 'b']), 
   biz: {
@@ -52,6 +52,8 @@ const failRecord = RSettings({
 ---
 
 ```ts
+const { Record, R } = require('record.js');
+
 const ROptionals = R('Optionals', {
   foo: R.Number, // Required
   'bar?': R.Number, // Optional, but need to be a number if pressent
@@ -71,6 +73,16 @@ const failRecord = ROptionals({
   bar: '2', //                 Error: Not a number
   biz: '3' //                  Error: Not a number
 });
+```
+
+---
+
+```ts
+const { Assert, R } = require('record.js');
+
+const constraint = R.Array.Each.Number;
+Assert([1, 2, 3], constraint); // OK
+Assert([1, '2', 3], constraint); // Error: Expected array index 1 to be a number but got a string
 ```
 
 ## Constraint types:
