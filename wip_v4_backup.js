@@ -147,7 +147,7 @@ const predicates = {
 const extractions = {
   Length: v => v.length
 }
-const assert = (value, root) => {
+const Assert = (value, root) => {
   const _assert = (value, {type, data, children}) => {
     if (type in predicates) {
       // Standard predicates
@@ -186,7 +186,7 @@ const assert = (value, root) => {
 
 console.clear();
 const AssertAll = (constraint, data) => data.forEach(([d, t]) => 
-  console.log(d, assert(d, constraint) === t)
+  console.log(d, Assert(d, constraint) === t)
 );
 
 const vv = R.Array.Each.Number.Max(5);
