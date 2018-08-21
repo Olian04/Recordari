@@ -40,7 +40,7 @@ const okRecord = RSettings({
 
 const failRecord = RSettings({
   foo: 5.01, //                     Error: Settings.foo => 5.01 is not a natural number
-  bar: ['c'], //                    Error: Settings.bar => 'c' is not in ['a', 'b'] 
+  bar: ['c'], //                    Error: Settings.bar[0] => 'c' is not in ['a', 'b'] 
   biz: { baz: 1.654, boo: 'd' }, // Error: Settings.biz => Unexpected key 'boo'.
   baz: 'hello', //                  Error: Settings.baz => 'hello'.length is not, less than 3, nor greater than 9
   boz: (a, b, c) => a, //           Error: Settings.boz => Function does not take exacly 2 arguments.
