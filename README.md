@@ -56,7 +56,7 @@ const { Record, R } = require('record.js');
 const ROptionals = Record('Optionals', {
   foo: R.Number, // Required
   'bar?': R.Number, // Optional, but need to be a number if pressent
-  'bar!': 2,
+  'bar!': 2,        // Default value for 'bar' if none was passed in.
   '?': R.Number // '?' applies to all unknown keys, if its missing then unknown keys are prohibited
 });
 
