@@ -39,12 +39,12 @@ const okRecord = RSettings({
 });
 
 const failRecord = RSettings({
-  foo: 5.01, //                     Error: Not a positive integer
-  bar: ['c'], //                    Error: 'c' is not in ['a', 'b'] 
-  biz: { baz: 1.654, boo: 'd' }, // Error: Unexpected key 'boo' on 'Settings.biz'.
-  baz: 'hello', //                  Error: Length is not either less than 3 or greater than 9
-  boz: (a, b, c) => a, //           Error: Does not take exacly 2 arguments that maches /\d$/
-  hello: 'Record.js' //             Error: Unexpected key 'hello' on 'Settings'.
+  foo: 5.01, //                     Error: Settings.foo => 5.01 is not a natural number
+  bar: ['c'], //                    Error: Settings.bar => 'c' is not in ['a', 'b'] 
+  biz: { baz: 1.654, boo: 'd' }, // Error: Settings.biz => Unexpected key 'boo'.
+  baz: 'hello', //                  Error: Settings.baz => 'hello'.length is not, less than 3, nor greater than 9
+  boz: (a, b, c) => a, //           Error: Settings.boz => Function does not take exacly 2 arguments.
+  hello: 'Record.js' //             Error: Settings => Unexpected key 'hello'.
 });
 ```
 
@@ -67,9 +67,9 @@ const okRecord = ROptionals({
 });
 
 const failRecord = ROptionals({
-  foo: '1', //                 Error: Not a number
-  bar: '2', //                 Error: Not a number
-  biz: '3' //                  Error: Not a number
+  foo: '1', //                 Error: Settings.foo => '1' is not a number
+  bar: '2', //                 Error: Settings.bar => '2' is not a number
+  biz: '3' //                  Error: Settings.biz => '3' is not a number
 });
 ```
 
@@ -84,8 +84,8 @@ const trueAssert = Assert([1, 2, 3], constraint);
 
 const falseAssert = Assert([1, '2', 3], constraint);
 
-Assert([1, '2', 3], constraint, e =>
-  throw new Error(e) // Error: Expected array index 1 to be a number to got a string
+Assert([1, '2', 3], constraint, msg =>
+  throw new Error(msg) // Error: this[1] => '2' is not a number.
 );
 ```
 
