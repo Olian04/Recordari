@@ -127,6 +127,8 @@ Assert([1, '2', 3], constraint, msg =>
   * Length: Number
   * Exact(str): String
   * Either(str[]): String
+  * StartsWith(str): String
+  * EndsWith(str): String
   * Matches(regex): String
 * Boolean
   * True: Void
