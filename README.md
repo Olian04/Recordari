@@ -124,6 +124,7 @@ Assert([1, '2', 3], constraint, msg =>
   * Either(num[]): Number  
   * Between(num_a, num_b): Number
 * String
+  * not: String
   * Length: Number
   * Exact(str): String
   * Either(str[]): String
