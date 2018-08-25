@@ -1,9 +1,9 @@
-const R = require('Record.js');
+const { Record, R } = require('Record.js');
 /**
   Defines a Record for a majority of webpack options
   Webpack options: https://webpack.js.org/configuration/
 */
-module.exports.RWebpackConfig = R('webpack.config.js', {
+module.exports.RWebpackConfig = Record('webpack.config.js', {
   mode: R.String.Either(["production", "development", "none"]),
   entry: R.or([
     R.String,
