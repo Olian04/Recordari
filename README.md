@@ -1,6 +1,21 @@
 ![logo](logo.png)
 
-> Record.js is a constraint based type enforcement system for vanilla js. 
+> Record.js is a type and structure validation tool for configuration files.
+
+```ts
+const { Record, R } = require('record.js');
+
+const RConfig = Record('MyConfig', {
+  loglevel: R.String.Either(['none', 'error', 'warn', 'info', 'debug']),
+  port: R.Number.Natural,
+  env: R.String.Either(['dev', 'prod'])
+});
+
+const config = RConfig(require('config.json')); // Will throw if a constraint fails
+config.loglevel // Will ALWAYS be valid
+config.port     // Will ALWAYS be valid
+config.env      // Will ALWAYS be valid
+```
 
 [Webpack example](examples/RWebpackConfig.js)
 
