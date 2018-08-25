@@ -10,10 +10,7 @@ module.exports.RPackageJSON = Record('PackageJSON', {
       R.String.Matches(/^@[a-z0-9\-~][a-z0-9\-._~]*\/[a-z0-9\-~][a-z0-9\-._~]*$/), // https://regex101.com/r/r3WfKS/4
     ])
   ]),
-  version: R.and([
-    R.String.Matches(/^\d+\.\d+\.\d+$/),
-    R.String.not.Matches(/^0.0.\d+$/)
-  ]),
+  version: R.String.Matches(/^(?!0\.0\.\d+$)\d+\.\d+\.\d+$/),
   description: R.String,
   keywords: R.Array.Each.String,
   homepage: R.String.Matches(URL),
