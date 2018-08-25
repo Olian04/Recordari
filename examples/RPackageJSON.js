@@ -21,4 +21,5 @@ module.exports.RPackageJSON = Record('PackageJSON', {
     url: R.String.Matches(URL),
     email: R.String.Matches(EMAIL)
   }
+  // WIP
 });
