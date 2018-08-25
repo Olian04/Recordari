@@ -118,6 +118,7 @@ Assert([1, '2', 3], constraint, msg =>
   * Object: Object
   * Regex: Regex
 * Number
+  * not: Number
   * Max(num): Number
   * Min(num): Number
   * Exact(num): Number
@@ -126,30 +127,37 @@ Assert([1, '2', 3], constraint, msg =>
 * String
   * not: String
   * Length: Number
+  * Each: String
   * Exact(str): String
   * Either(str[]): String
-  * StartsWith(str): String
-  * EndsWith(str): String
+  * StartsWith(str | regex): String
+  * EndsWith(str | regex): String
   * Matches(regex): String
 * Boolean
+  * not: Boolean
   * True: Void
   * False: Void
 * Function
+  * not: Function
   * Arguments: Function_Arguments 
   * Test(...args): R
 * Function_Arguments
+  * not: Function_Arguments
   * Length: Number
   * Contains: String
   * Each: String
 * Array
+  * not: Array
   * Length: Number
   * Contains: R
   * Each: R
   * Like(array): Void
 * Object
+  * not: Object
   * Values: Array
   * Keys: Array
   * Like(obj): Void
 * Regex
+  * not: Regex
   * Test(str): Boolean
 * Void
