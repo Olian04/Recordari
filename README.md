@@ -16,8 +16,9 @@ config.loglevel // Will ALWAYS be valid
 config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
-
 [Webpack example](examples/RWebpackConfig.js)
+
+[NPM example](examples/RPackageJSON.js)
 
 Fiddle WIP v4: https://jsfiddle.net/09ouas1m/340/
 
