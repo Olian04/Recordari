@@ -2,6 +2,7 @@
 
 > Record.js is a type and structure validation tool for configuration files.
 
+__API__ 
 ```ts
 const { Record, R } = require('record.js');
 
@@ -16,6 +17,24 @@ config.loglevel // Will ALWAYS be valid
 config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
+
+__CLI__
+
+```js
+//config.json
+{
+  "name": "record.js"
+}
+
+//config.constraints.js
+module.exports = R => ({
+  name: R.String
+})
+
+// CLI
+$ record config.constraints.js config.json
+```
+
 [Webpack example](examples/RWebpackConfig.js)
 
 [NPM example](examples/RPackageJSON.js)
