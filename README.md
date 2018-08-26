@@ -7,9 +7,9 @@ __API__
 const { Record, R } = require('record.js');
 
 const RConfig = Record('MyConfig', {
-  loglevel: R.String.Either(['none', 'error', 'warn', 'info', 'debug']),
   port: R.Number.Natural,
-  env: R.String.Either(['dev', 'prod'])
+  env: R.String.Either(['dev', 'prod']),
+  loglevel: R.String.Either(['none', 'error', 'warn', 'info', 'debug'])
 });
 
 const config = RConfig(require('config.json')); // Will throw if a constraint fails
