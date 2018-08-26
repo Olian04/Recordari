@@ -66,7 +66,7 @@ const failRecord = RSettings({
   baz: 'hello', //                  Error: Settings.baz => 'hello'.length is not, less than 3, nor greater than 9
   boz: (a, b, c) => a, //           Error: Settings.boz => Function does not take exacly 2 arguments.
   hello: 'Record.js' //             Error: Settings => Unexpected key 'hello'.
-  bez: /^\d+\.\d+\.\d+$/            Error: Settings.bez => '0.0.0'.match should be false
+  bez: /^\d+\.\d+\.\d+$/ //         Error: Settings.bez => '0.0.0'.match should be false
 });
 ```
 
