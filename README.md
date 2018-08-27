@@ -114,22 +114,6 @@ const failRecord = ROptionals({
 });
 ```
 
----
-
-```ts
-const { Assert, R } = require('record.js');
-
-const constraint = R.Array.Each.Number;
-
-const trueAssert = Assert([1, 2, 3], constraint);
-
-const falseAssert = Assert([1, '2', 3], constraint);
-
-Assert([1, '2', 3], constraint, msg =>
-  throw new Error(msg) // Error: this[1] => '2' is not a number.
-);
-```
-
 ## Constraint types:
 
 * R
@@ -143,8 +127,15 @@ Assert([1, '2', 3], constraint, msg =>
   * Array: Array
   * Object: Object
   * Regex: Regex
+  * Null: Void
+  * Undefined: Void
+  * Any: Void
+  * Custom(predicate): R
 * Number
   * not: Number
+  * Natural: Number
+  * Decimal: Number
+  * Whole: Number
   * Max(num): Number
   * Min(num): Number
   * Exact(num): Number
@@ -156,30 +147,25 @@ Assert([1, '2', 3], constraint, msg =>
   * Each: String
   * Exact(str): String
   * Either(str[]): String
-  * StartsWith(str | regex): String
-  * EndsWith(str | regex): String
+  * StartsWith(str): String
+  * EndsWith(str): String
   * Matches(regex): String
 * Boolean
-  * not: Boolean
   * True: Void
   * False: Void
 * Function
-  * not: Function
   * Arguments: Function_Arguments 
   * Test(...args): R
 * Function_Arguments
-  * not: Function_Arguments
   * Length: Number
   * Contains: String
   * Each: String
 * Array
-  * not: Array
   * Length: Number
   * Contains: R
   * Each: R
   * Like(array): Void
 * Object
-  * not: Object
   * Values: Array
   * Keys: Array
   * Like(obj): Void
