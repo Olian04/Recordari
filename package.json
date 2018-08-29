@@ -2,8 +2,8 @@
   "name": "record",
   "version": "0.1.0",
   "description": "Record.js is a type and structure validation tool for configuration files",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/api.js",
+  "types": "dist/api.d.ts",
   "directories": {
     "example": "examples",
     "lib": "src",
@@ -11,9 +11,14 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "test": "nyc mocha --recursive -r ts-node/register src/**/*.spec.ts",
+    "test": "nyc --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register src/**/*.spec.ts",
     "build": "tsc",
-    "doc": "typedoc --mode file --out docs/ src/index.ts"
+    "doc": "typedoc --mode file --out docs/ src/api.ts"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.ts"
+    ]
   },
   "repository": {
     "type": "git",
