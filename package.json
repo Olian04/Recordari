@@ -1,0 +1,43 @@
+{
+  "name": "record",
+  "version": "0.1.0",
+  "description": "Record.js is a type and structure validation tool for configuration files",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "example": "examples",
+    "lib": "src",
+    "doc": "docs"
+  },
+  "scripts": {
+    "watch": "tsc -w",
+    "test": "nyc mocha --recursive -r ts-node/register src/**/*.spec.ts",
+    "build": "tsc",
+    "doc": "typedoc --mode file --out docs/ src/turingjs.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olian04/Record.js.git"
+  },
+  "author": "olian04",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Olian04/Record.js/issues"
+  },
+  "homepage": "https://github.com/Olian04/Record.js#readme",
+  "keywords": [
+    "json"
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.9.3",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.1",
+    "nyc": "^13.0.1"
+  },
+  "dependencies": {}
+}
