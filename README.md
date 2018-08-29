@@ -1,4 +1,4 @@
-![logo](logo.png)
+![logo](assets/logo.png)
 
 > Record.js is a type and structure validation tool for configuration files.
 
