@@ -13,7 +13,7 @@
     "watch": "tsc -w",
     "test": "nyc mocha --recursive -r ts-node/register src/**/*.spec.ts",
     "build": "tsc",
-    "doc": "typedoc --mode file --out docs/ src/turingjs.ts"
+    "doc": "typedoc --mode file --out docs/ src/index.ts"
   },
   "repository": {
     "type": "git",
