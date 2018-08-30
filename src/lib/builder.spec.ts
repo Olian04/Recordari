@@ -1,61 +1,30 @@
 import { expect, assert } from 'chai';
 import { Builder } from './builder';
-import { internal, hasInternal, NodeType } from './builder.interface';
+import { internal, hasInternal, NodeType, IInternal } from './builder.interface';
+
+const child = (node: IInternal, depth: number): IInternal => depth === 0 ? node : child(node.children[0], depth-1);
+const assertChildType = (node: IInternal, childDepth: number, type: NodeType) => expect(child(node, childDepth).type).to.equal(type);
+const test = (name: string, constraint, cb: (internal: IInternal) => void) => {
+  it(name, () => {
+    if (hasInternal(constraint)) {
+      assertChildType(constraint[internal], 0, NodeType.Base);
+      cb(constraint[internal].children[0]);
+    } else {
+      assert.fail();
+    }
+  })
+}
 
 describe('builder', () => {
-  it('Any', () => {
-    const a = Builder.Any;
-    if (hasInternal(a)) {
-      expect(
-        a[internal].type
-        // Builder
-      ).to.equal(NodeType.Base);
-      expect(
-        a[internal].children[0].type
-        // Builder.Any
-      ).to.equal(NodeType.Any);
-    } else {
-      assert.fail();
-    }
-  });
-  it('Number', () => {
-    const a = Builder.Number;
-    if (hasInternal(a)) {
-      expect(
-        a[internal].type
-        // Builder
-      ).to.equal(NodeType.Base);
-      expect(
-        a[internal].children[0].type
-        //Builder.Number
-      ).to.equal(NodeType.Number);
-    } else {
-      assert.fail();
-    }
-  });
-  it('and', () => {
-    const a = Builder.and([
-      Builder.Number
-    ]);
-    if (hasInternal(a)) {
-      expect(
-        a[internal].type
-        // Builder
-      ).to.equal(NodeType.Base);
-      expect(
-        a[internal].children[0].type
-        //Builder.and([])
-      ).to.equal(NodeType.And);
-      expect(
-        a[internal].children[0].children[0].type
-        //Builder.and([ Builder ])
-      ).to.equal(NodeType.Base);
-      expect(
-        a[internal].children[0].children[0].children[0].type
-        //Builder.and([ Builder.Number ])
-      ).to.equal(NodeType.Number);
-    } else {
-      assert.fail();
-    }
+  test('Any', Builder.Any, a =>
+    assertChildType(a, 0, NodeType.Any)
+  );
+  test('Number', Builder.Number, a =>
+    assertChildType(a, 0, NodeType.Number)
+  );
+  test('and', Builder.and([ Builder.Number ]), a => {
+    assertChildType(a, 0, NodeType.And);
+    assertChildType(a, 1, NodeType.Base);
+    assertChildType(a, 2, NodeType.Number);
   });
 });
