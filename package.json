@@ -11,7 +11,7 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "test": "nyc --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register src/**/*.spec.ts",
+    "test": "nyc --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts'",
     "build": "tsc",
     "doc": "typedoc --mode file --out docs/ src/api.ts"
   },
