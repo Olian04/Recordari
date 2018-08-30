@@ -1,2 +1,1 @@
-export const foo = a => a;
-export const bar = a => a;
+export { Builder as R } from './lib/builder';

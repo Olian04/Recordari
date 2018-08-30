@@ -1,9 +1,8 @@
-import { expect  } from 'chai';
-
-import { foo } from './api';
+import { expect } from 'chai';
+import { R } from './api';
 
 describe('api', () => {
-  it('foo should return "foo"', () => {
-    expect(foo('foo')).to.equal('foo');
+  it('R', () => {
+    expect(R).to.not.be.undefined;
   });
 });
