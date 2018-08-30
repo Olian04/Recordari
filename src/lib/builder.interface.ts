@@ -41,6 +41,7 @@ export interface INode_Array extends __ {
   Length: INode_Number;
   Each: INode_Base;
   Contains: INode_Base;
+  Like(tuple_of_constraints: __[]): INode_Void;
 }
 export interface INode_Base extends __ {
   Number: INode_Number;

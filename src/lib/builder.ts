@@ -1,7 +1,7 @@
 import '../util/collections';
-import { internal, NodeType, IInternal, INode_Base, INode_Number, INode } from './builder.interface';
+import { internal, NodeType, IInternal, INode_Base, INode_Number, INode_Array, INode_Void, INode } from './builder.interface';
 
-const Node_Void = root => ({
+const Node_Void = (root: IInternal): INode => ({
   [internal]: root
 });
 
@@ -33,15 +33,15 @@ const Node_Number = (root: IInternal, self: IInternal): INode & INode_Number => 
   }
 });
 
-const Node_Array = (root, self) => ({
+const Node_Array = (root: IInternal, self: IInternal):  INode & INode_Array => ({
   [internal]: root,
   get Length() {
     self.children.push({
-      type: 'Length',
+      type: NodeType.Length,
       data: [],
       children: [
         {
-          type: 'Number',
+          type: NodeType.Number,
           data: [],
           children: []
         }
@@ -51,7 +51,7 @@ const Node_Array = (root, self) => ({
   },
   get Each() {
     self.children.push({
-      type: 'Each',
+      type: NodeType.Each,
       data: [],
       children: []
     });
@@ -59,7 +59,7 @@ const Node_Array = (root, self) => ({
   },
   get Contains() {
     self.children.push({
-      type: 'Contains',
+      type: NodeType.Contains,
       data: [],
       children: []
     });
@@ -67,7 +67,7 @@ const Node_Array = (root, self) => ({
   },
   Like(Rs) {
     self.children.push({
-      type: 'Like',
+      type: NodeType.Like,
       data: [],
       children: Rs.map(r => r[internal])
     });
