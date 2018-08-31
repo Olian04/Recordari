@@ -1,7 +1,7 @@
 import '../util/collections';
 import { internal, NodeType, IInternal, INode_Base, INode_Number, INode_Array, INode_Void, INode } from './builder.interface';
 
-const Node_Void = (root: IInternal): INode => ({
+const Node_Void = (root: IInternal): INode_Void => ({
   [internal]: root
 });
 
