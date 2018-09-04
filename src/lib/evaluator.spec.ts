@@ -208,4 +208,7 @@ describe('Evaluator', () => {
       [['1', 2, true], false]
     ])
   });
+  it('Any', () => {
+    exhaustBaseCases(Builder.Any, 'Any', DontExhaust.None, true);
+  })
 });
