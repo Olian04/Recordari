@@ -1,11 +1,11 @@
 import '../util/collections';
-import { internal, NodeType, IInternal, INode_Base, INode_Number, INode_Array, INode_Void, INode } from './builder.interface';
+import { internal, NodeType, IInternal, INode_Base, INode_Number, INode_Array, INode_Void, _INode } from './builder.interface';
 
 const Node_Void = (root: IInternal): INode_Void => ({
   [internal]: root
 });
 
-const Node_Number = (root: IInternal, self: IInternal): INode & INode_Number => ({
+const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Number => ({
   [internal]: root,
   Max(val) {
     self.children.push({
@@ -33,7 +33,7 @@ const Node_Number = (root: IInternal, self: IInternal): INode & INode_Number => 
   }
 });
 
-const Node_Array = (root: IInternal, self: IInternal):  INode & INode_Array => ({
+const Node_Array = (root: IInternal, self: IInternal):  _INode & INode_Array => ({
   [internal]: root,
   get Length() {
     self.children.push({
@@ -75,7 +75,7 @@ const Node_Array = (root: IInternal, self: IInternal):  INode & INode_Array => (
   }
 });
 
-const Node_Base = (root: IInternal, self: IInternal): INode & INode_Base => ({
+const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base => ({
   [internal]: root,
   get Number() {
     self.children.push({

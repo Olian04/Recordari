@@ -1,5 +1,9 @@
 export const internal = Symbol('builder-internal');
-export const hasInternal = (node: object): node is INode => {
+
+export type _INode = {
+  [internal]: IInternal;
+}
+export const hasInternal = (node: object): node is _INode => {
   return internal in node;
 }
 
@@ -26,28 +30,25 @@ export interface IInternal {
   data: any[];
   children: IInternal[];
 }
-export type INode = {
-  [internal]: IInternal;
-}
-interface __ { } // Used to refer to any Node
-export interface INode_Void extends __ { }
-export interface INode_Number extends __ {
+export interface INode { } // Used to refer to any Node
+export interface INode_Void extends INode { }
+export interface INode_Number extends INode {
   Exact(value: number): INode_Number;
   Min(value: number): INode_Number;
   Max(value: number): INode_Number;
   //Between(valueA: number, valueB: number): INode_Number;
 }
-export interface INode_Array extends __ {
+export interface INode_Array extends INode {
   Length: INode_Number;
   Each: INode_Base;
   Contains: INode_Base;
-  Like(tuple_of_constraints: __[]): INode_Void;
+  Like(tuple_of_constraints: INode[]): INode_Void;
 }
-export interface INode_Base extends __ {
+export interface INode_Base extends INode {
   Number: INode_Number;
   Array: INode_Array;
-  and(constraints: __[]): INode_Void;
-  or(constraints: __[]): INode_Void;
+  and(constraints: INode[]): INode_Void;
+  or(constraints: INode[]): INode_Void;
   not: INode_Base;
   Any: INode_Void;
 }
