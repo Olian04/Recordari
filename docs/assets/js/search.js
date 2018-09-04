@@ -1,3 +1,3 @@
 var typedoc = typedoc || {};
             typedoc.search = typedoc.search || {};
-            typedoc.search.data = {"kinds":{"64":"Function"},"rows":[{"id":0,"kind":64,"name":"foo","url":"globals.html#foo","classes":"tsd-kind-function"}]};
+            typedoc.search.data = {"kinds":{"65536":"Type literal"},"rows":[{"id":0,"kind":65536,"name":"__type","url":"globals.html#_inode.__type","classes":"tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported","parent":"_INode"}]};
