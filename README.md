@@ -2,7 +2,7 @@
 
 > Record.js is a type and structure validation tool for configuration files.
 
-__API__ 
+__API__
 ```ts
 const { Record, R } = require('record.js');
 
@@ -39,18 +39,12 @@ $ record config.constraints.js config.json
 
 [NPM example](examples/RPackageJSON.js)
 
-Fiddle WIP v4: https://jsfiddle.net/09ouas1m/340/
-
-~~Fiddle WIP v3: https://jsfiddle.net/ua1zj9Lk/343/~~
-
-~~Fiddle WIP v2: https://jsfiddle.net/524brseg/410/~~
-
 ```ts
 const { Record, R } = require('record.js');
 
 const RSettings = Record('Settings', {
-  foo: R.Number.Natural, 
-  bar: R.Array.Each.String.Either(['a', 'b']), 
+  foo: R.Number.Natural,
+  bar: R.Array.Each.String.Either(['a', 'b']),
   biz: {
     baz: R.Number.Between(0, 8)
   },
@@ -71,16 +65,16 @@ const RSettings = Record('Settings', {
 
 const okRecord = RSettings({
   foo: 5,
-  bar: ['b'], 
+  bar: ['b'],
   biz: { baz: 1.654 },
-  baz: 'hi', 
+  baz: 'hi',
   boz: (arg1, arg2) => arg1 + arg2,
   bez: /^(?!0\.0\.\d+$)\d+\.\d+\.\d+$/
 });
 
 const failRecord = RSettings({
   foo: 5.01, //                     Error: Settings.foo => 5.01 is not a natural number
-  bar: ['c'], //                    Error: Settings.bar[0] => 'c' is not in ['a', 'b'] 
+  bar: ['c'], //                    Error: Settings.bar[0] => 'c' is not in ['a', 'b']
   biz: { baz: 1.654, boo: 'd' }, // Error: Settings.biz => Unexpected key 'boo'.
   baz: 'hello', //                  Error: Settings.baz => 'hello'.length is not, less than 3, nor greater than 9
   boz: (a, b, c) => a, //           Error: Settings.boz => Function does not take exacly 2 arguments.
@@ -139,7 +133,7 @@ const failRecord = ROptionals({
   * Max(num): Number
   * Min(num): Number
   * Exact(num): Number
-  * Either(num[]): Number  
+  * Either(num[]): Number
   * Between(num_a, num_b): Number
 * String
   * not: String
@@ -154,7 +148,7 @@ const failRecord = ROptionals({
   * True: Void
   * False: Void
 * Function
-  * Arguments: Function_Arguments 
+  * Arguments: Function_Arguments
   * Test(...args): R
 * Function_Arguments
   * Length: Number
