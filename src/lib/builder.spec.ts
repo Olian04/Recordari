@@ -15,19 +15,22 @@ const test = (name: string, constraint, cb: (internal: IInternal) => void) => {
   })
 }
 
-describe('builder', () => {
+describe('Builder', () => {
   test('Any', Builder.Any, a =>
     assertChild(a, 0, NodeType.Any)
   );
   test('Number', Builder.Number, a =>
     assertChild(a, 0, NodeType.Number)
   );
-  test('and', Builder.and([ Builder.Number ]), a => {
+  test('Array', Builder.Array, a =>
+    assertChild(a, 0, NodeType.Array)
+  );
+  test('And', Builder.and([ Builder.Number ]), a => {
     assertChild(a, 0, NodeType.And);
     assertChild(a, 1, NodeType.Base);
     assertChild(a, 2, NodeType.Number);
   });
-  test('or', Builder.or([ Builder.Number ]), a => {
+  test('Or', Builder.or([ Builder.Number ]), a => {
     assertChild(a, 0, NodeType.Or);
     assertChild(a, 1, NodeType.Base);
     assertChild(a, 2, NodeType.Number);
