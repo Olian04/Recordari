@@ -10,7 +10,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "nyc --check-coverage --functions 99 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts'",
+    "test": "nyc --check-coverage --functions 99 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts' ",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov --token=f3e31ed4-f58a-4b46-8a5e-a3f2b394f927",
     "build": "tsc",
     "doc": "typedoc --mode file --out docs/ src/api.ts"
   },
@@ -41,6 +42,7 @@
     "ts-node": "^7.0.1",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.1",
+    "codecov": "^3.1.0",
     "nyc": "^13.0.1"
   },
   "dependencies": {}
