@@ -34,10 +34,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
+      - run: npm run test
 
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+      - run: npm run coverage
 
 
