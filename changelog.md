@@ -3,6 +3,7 @@
 ## General
 * Implemented core structure for builder & evaluator
 * Added Array.zip util (used in evaluator for Array.Like)
+* Using CircleCI and Codecov as automated QA.
 
 ## Constraints
 - Void
