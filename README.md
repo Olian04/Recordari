@@ -1,5 +1,9 @@
 ![logo](assets/logo.png)
 
+|         |  Master           | Next  |
+|:------------:|:-----------------:|:------:|
+| CI             | [![CircleCI](https://circleci.com/gh/Olian04/Record.js/tree/master.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/master) |[![CircleCI](https://circleci.com/gh/Olian04/Record.js/tree/next.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/next) |
+
 > Record.js is a type and structure validation tool for configuration files.
 
 __API__
