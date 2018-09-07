@@ -1,4 +1,3 @@
-import '../util/collections';
 import { NodeType, INode_Base, _INode } from './builder.interface';
 import { Node_Base } from './builders/base.builder';
 
