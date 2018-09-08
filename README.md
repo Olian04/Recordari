@@ -3,7 +3,7 @@
 |         |  Master           | Next  |
 |:------------:|:-----------------:|:------:|
 | Tests             | [![CI - Master](https://circleci.com/gh/Olian04/Record.js/tree/master.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/master) |[![CI - Next](https://circleci.com/gh/Olian04/Record.js/tree/next.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/next) |
-| Coverage  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/master/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js)  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/next/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js) |
+| Coverage  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/master/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js/branch/master)  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/next/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js/branch/next) |
 
 > Record.js is a type and structure validation tool for configuration files.
 
