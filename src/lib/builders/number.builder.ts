@@ -34,6 +34,22 @@ export const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Nu
     });
     return Node_Number(root, self.children[0]);
   },
+  Mod(val_a, val_b) {
+    self.children.push({
+      type: NodeType.Modulo,
+      data: [val_a, val_b],
+      children: []
+    });
+    return Node_Number(root, self.children[0]);
+  },
+  get Whole() {
+    self.children.push({
+      type: NodeType.Modulo,
+      data: [1, 0],
+      children: []
+    });
+    return Node_Number(root, self.children[0]);
+  },
   Between(val_a, val_b) {
     self.children.push({
       type: NodeType.Min,

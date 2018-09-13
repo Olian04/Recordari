@@ -12,5 +12,6 @@ export const predicates: {
   [NodeType.Exact]: (v, [a]) => v === a,
   [NodeType.Boolean]: v => typeof v === 'boolean',
   [NodeType.True]: v => v === true,
-  [NodeType.False]: v => v === false
+  [NodeType.False]: v => v === false,
+  [NodeType.Modulo]: (v, [m, r]) => Math.abs(v) % m === r
 }
