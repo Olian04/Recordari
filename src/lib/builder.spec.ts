@@ -22,6 +22,9 @@ describe('Builder', () => {
   test('Number', Builder.Number, a =>
     assertChild(a, 0, NodeType.Number)
   );
+  test('Boolean', Builder.Boolean, a =>
+    assertChild(a, 0, NodeType.Boolean)
+  );
   test('Array', Builder.Array, a =>
     assertChild(a, 0, NodeType.Array)
   );

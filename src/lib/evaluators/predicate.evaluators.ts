@@ -9,5 +9,8 @@ export const predicates: {
   [NodeType.Number]: v => typeof v === 'number',
   [NodeType.Max]: (v, [a]) => v <= a,
   [NodeType.Min]: (v, [a]) => v >= a,
-  [NodeType.Exact]: (v, [a]) => v === a
+  [NodeType.Exact]: (v, [a]) => v === a,
+  [NodeType.Boolean]: v => typeof v === 'boolean',
+  [NodeType.True]: v => v === true,
+  [NodeType.False]: v => v === false
 }

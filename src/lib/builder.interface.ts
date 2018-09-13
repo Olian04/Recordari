@@ -10,8 +10,6 @@ export const hasInternal = (node: object): node is _INode => {
 export enum NodeType {
   Base = 'Base',
   Number = 'Number',
-  String = 'String',
-  Void = 'Void',
   Max = 'Max',
   Min = 'Min',
   Exact = 'Exact',
@@ -24,6 +22,9 @@ export enum NodeType {
   Or = 'Or',
   Not = 'Not',
   Any = 'Any',
+  Boolean = 'Boolean',
+  True =  'True',
+  False = 'False'
 }
 export interface IInternal {
   type: NodeType;
@@ -44,9 +45,14 @@ export interface INode_Array extends INode {
   Contains: INode_Base;
   Like(tuple_of_constraints: INode[]): INode_Void;
 }
+export interface INode_Boolean extends INode {
+  True: INode_Void;
+  False: INode_Void;
+}
 export interface INode_Base extends INode {
   Number: INode_Number;
   Array: INode_Array;
+  Boolean: INode_Boolean;
   and(constraints: INode[]): INode_Void;
   or(constraints: INode[]): INode_Void;
   not: INode_Base;

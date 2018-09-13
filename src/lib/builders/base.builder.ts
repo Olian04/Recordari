@@ -2,6 +2,7 @@ import { internal, NodeType, IInternal, _INode, INode_Base } from '../builder.in
 import { Node_Number } from './number.builder';
 import { Node_Array } from './array.builder';
 import { Node_Void } from './void.builder';
+import { Node_Boolean } from './boolean.builder';
 
 export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base => ({
   [internal]: root,
@@ -20,6 +21,14 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
       children: []
     });
     return Node_Array(root, self.children[0]);
+  },
+  get Boolean() {
+    self.children.push({
+      type: NodeType.Boolean,
+      data: [],
+      children: []
+    });
+    return Node_Boolean(root, self.children[0]);
   },
   and(Rs) {
     self.children.push({

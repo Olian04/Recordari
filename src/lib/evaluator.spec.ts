@@ -2,6 +2,11 @@ import { expect } from 'chai';
 import { Builder } from './builder';
 import { Evaluate } from './evaluator';
 
+import { predicates } from './evaluators/predicate.evaluators';
+import { extractions } from './evaluators/extraction.evaluators';
+import { unique } from './evaluators/unique.evaluators';
+import { NodeType } from './builder.interface';
+
 const assertAll = (constraint, strRepConstraint: string, valuesToTest: [any, boolean][]) => {
   valuesToTest.forEach(([v, res]) => {
     const evaluation = Evaluate(v, constraint);
@@ -50,6 +55,29 @@ const test = (k: string, cb: () => void) => {
 }
 
 describe('Evaluator', () => {
+  it('All NodeTypes have evaluators', () => {
+    Object.keys(NodeType).forEach(k =>
+      expect(
+        k in predicates ||
+        k in extractions ||
+        k in unique,
+        `Evaluator missing for NodeType.${k}`).to.be.true
+      );
+  });
+  test('Boolean', () => {
+    it('True', () => {
+      assertAll(Builder.Boolean.True, 'Boolean.True', [
+        [true, true],
+        [false, false]
+      ]);
+    });
+    it('False', () => {
+      assertAll(Builder.Boolean.False, 'Boolean.False', [
+        [false, true],
+        [true, false]
+      ]);
+    });
+  });
   test('Number', () => {
     it('Exact', () => {
       assertAll(Builder.Number.Exact(2), 'Number.Exact(2)', [
