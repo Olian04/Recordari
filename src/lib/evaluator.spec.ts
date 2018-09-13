@@ -118,6 +118,20 @@ describe('Evaluator', () => {
         [0o1, true] // Octal 1
       ]);
     });
+    it('Between', () => {
+      assertAll(Builder.Number.Between(1,2), 'Number.Number.Between(1,2)', [
+        [0, false],
+        [1, true],
+        [2, true],
+        [3, false],
+        [0b11, false], // Binary 3
+        [0b10, true], // Binary 2
+        [0b1, true], // Binary 1
+        [0o3, false], // Octal 3
+        [0o2, true], // Octal 2
+        [0o1, true] // Octal 1
+      ]);
+    });
     it('not', () => {
       assertAll(Builder.Number.not.Exact(2), 'Number.not.Exact(2)', [
         [1, true],

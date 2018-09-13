@@ -26,6 +26,18 @@ export const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Nu
     });
     return Node_Number(root, self.children[0]);
   },
+  Between(val_a, val_b) {
+    self.children.push({
+      type: NodeType.Min,
+      data: [Math.min(val_a, val_b)],
+      children: [{
+        type: NodeType.Max,
+        data: [Math.max(val_a, val_b)],
+        children: []
+      }]
+    });
+    return Node_Number(root, self.children[0].children[0]);
+  },
   Exact(val) {
     self.children.push({
       type: NodeType.Exact,

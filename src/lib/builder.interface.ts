@@ -39,7 +39,7 @@ export interface INode_Number extends INode {
   Exact(value: number): INode_Number;
   Min(value: number): INode_Number;
   Max(value: number): INode_Number;
-  //Between(valueA: number, valueB: number): INode_Number;
+  Between(valueA: number, valueB: number): INode_Number;
 }
 export interface INode_Array extends INode {
   Length: INode_Number;
