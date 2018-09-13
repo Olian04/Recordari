@@ -105,6 +105,15 @@ describe('Evaluator', () => {
         [0o1, false] // Octal 1
       ]);
     });
+    it('Natural', () => {
+      assertAll(Builder.Number.Natural, 'Number.Natural', [
+        [-1, false],
+        [-0.5, false],
+        [0, true],
+        [0.5, true],
+        [1, true],
+      ]);
+    });
     it('Max', () => {
       assertAll(Builder.Number.Max(2), 'Number.Max(2)', [
         [1, true],

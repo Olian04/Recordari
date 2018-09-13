@@ -26,6 +26,14 @@ export const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Nu
     });
     return Node_Number(root, self.children[0]);
   },
+  get Natural() {
+    self.children.push({
+      type: NodeType.Min,
+      data: [0],
+      children: []
+    });
+    return Node_Number(root, self.children[0]);
+  },
   Between(val_a, val_b) {
     self.children.push({
       type: NodeType.Min,
