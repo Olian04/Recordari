@@ -33,7 +33,9 @@ export interface IInternal {
 }
 export interface INode { } // Used to refer to any Node
 export interface INode_Void extends INode { }
+
 export interface INode_Number extends INode {
+  not: INode_Number;
   Exact(value: number): INode_Number;
   Min(value: number): INode_Number;
   Max(value: number): INode_Number;

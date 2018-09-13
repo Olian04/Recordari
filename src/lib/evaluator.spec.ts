@@ -118,6 +118,18 @@ describe('Evaluator', () => {
         [0o1, true] // Octal 1
       ]);
     });
+    it('not', () => {
+      assertAll(Builder.Number.not.Exact(2), 'Number.not.Exact(2)', [
+        [1, true],
+        [2, false],
+        [0b11, true], // Binary 3
+        [0b10, false], // Binary 2
+        [0b1, true], // Binary 1
+        [0o3, true], // Octal 3
+        [0o2, false], // Octal 2
+        [0o1, true] // Octal 1
+      ]);
+    });
   });
   test('Array', () => {
     it('Array.Each', () => {

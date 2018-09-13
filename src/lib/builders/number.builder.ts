@@ -2,6 +2,14 @@ import { internal, NodeType, IInternal, _INode, INode_Number } from '../builder.
 
 export const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Number => ({
   [internal]: root,
+  get not() {
+    self.children.push({
+      type: NodeType.Not,
+      data: [],
+      children: []
+    });
+    return Node_Number(root, self.children[0]);
+  },
   Max(val) {
     self.children.push({
       type: NodeType.Max,
