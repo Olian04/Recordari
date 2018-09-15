@@ -304,5 +304,19 @@ describe('Evaluator', () => {
   });
   it('Any', () => {
     exhaustBaseCases(Builder.Any, 'Any', DontExhaust.None, true);
+    exhaustBaseCases(Builder.not.Any, 'Any', DontExhaust.None);
   })
+  it('Custom', () => {
+    assertAll(Builder.Custom(v => v === 0), 'Custom(v => v === 0)', [
+      [0, true],
+      [0.1, false],
+      ['0', false],
+      ['', false],
+      [undefined, false],
+      [null, false],
+      [true, false],
+      [false, false],
+      [1, false]
+    ])
+  });
 });

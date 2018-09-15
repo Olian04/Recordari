@@ -31,6 +31,7 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
     return Node_Boolean(root, self.children[0]);
   },
   and(Rs) {
+    // TODO: Add tests to make sure the Rs are all INodes
     self.children.push({
       type: NodeType.And,
       data: [],
@@ -39,12 +40,22 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
     return Node_Void(root);
   },
   or(Rs) {
+    // TODO: Add tests to make sure the Rs are all INodes
     self.children.push({
       type: NodeType.Or,
       data: [],
       children: Rs.map(r => r[internal])
     });
     return Node_Void(root);
+  },
+  Custom(predicate) {
+    // TODO: Add tests to make sure the predicate is a function.
+    self.children.push({
+      type: NodeType.Custom,
+      data: [predicate],
+      children: []
+    });
+    return Node_Base(root, self.children[0]);
   },
   get not() {
     self.children.push({

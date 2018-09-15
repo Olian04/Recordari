@@ -15,4 +15,5 @@ export const predicates: {
   [NodeType.False]: v => v === false,
   [NodeType.Modulo]: (v, [m, r]) => Math.abs(v) % m === r,
   [NodeType.Either]: (v, [arr]) => arr.find(a => a===v) !== undefined,
+  [NodeType.Custom]: (v, [predicate]) => predicate(v),
 }

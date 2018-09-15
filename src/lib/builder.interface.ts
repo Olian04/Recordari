@@ -27,6 +27,7 @@ export enum NodeType {
   False = 'False',
   Modulo = 'Modulo',
   Either =  'Either',
+  Custom = 'Custom',
 }
 export interface IInternal {
   type: NodeType;
@@ -63,6 +64,7 @@ export interface INode_Base extends INode {
   Boolean: INode_Boolean;
   and(constraints: INode[]): INode_Void;
   or(constraints: INode[]): INode_Void;
+  Custom(predicate: (value: any) => boolean): INode_Base;
   not: INode_Base;
   Any: INode_Void;
 }
