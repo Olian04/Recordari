@@ -25,7 +25,8 @@ export enum NodeType {
   Boolean = 'Boolean',
   True =  'True',
   False = 'False',
-  Modulo = 'Modulo'
+  Modulo = 'Modulo',
+  Either =  'Either',
 }
 export interface IInternal {
   type: NodeType;
@@ -43,6 +44,7 @@ export interface INode_Number extends INode {
   Max(value: number): INode_Number;
   Mod(mod: number, result: number): INode_Number;
   Exact(value: number): INode_Number;
+  Either(values: number[]): INode_Number;
   Between(valueA: number, valueB: number): INode_Number;
 }
 export interface INode_Array extends INode {

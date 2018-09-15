@@ -123,6 +123,17 @@ describe('Evaluator', () => {
         [1, true]
       ]);
     });
+    it('Either', () => {
+      assertAll(Builder.Number.Either([1, 2]), 'Number.Either([1, 2])', [
+        [-1, false],
+        [-0.5, false],
+        [0, false],
+        [0.5, false],
+        [1, true],
+        [1.5, false],
+        [2, true]
+      ]);
+    });
     it('Mod', () => {
       assertAll(Builder.Number.Mod(2, 1), 'Number.Mod(2, 1)', [
         [-2, false],

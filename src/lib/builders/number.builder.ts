@@ -62,6 +62,14 @@ export const Node_Number = (root: IInternal, self: IInternal): _INode & INode_Nu
     });
     return Node_Number(root, self.children[0].children[0]);
   },
+  Either(values: any[]) {
+    self.children.push({
+      type: NodeType.Either,
+      data: [values],
+      children: []
+    });
+    return Node_Number(root, self.children[0]);
+  },
   Exact(val) {
     self.children.push({
       type: NodeType.Exact,
