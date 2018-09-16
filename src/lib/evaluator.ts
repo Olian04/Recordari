@@ -8,12 +8,10 @@ export const Evaluate = (value, root: INode): boolean => {
     if (type in predicates) {
       // Predicate
       return predicates[type](value, data) && (children[0] === undefined || _eval(value, children[0]));
-    }
-    if (type in extractions) {
+    } else if (type in extractions) {
       // Extraction
       return children[0] === undefined || _eval(extractions[type](value, data), children[0]);
-    }
-    if (type in unique) {
+    } else if (type in unique) {
       // Unique
       return unique[type](_eval, value, {type, data, children});
     }
