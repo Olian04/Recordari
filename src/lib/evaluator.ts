@@ -17,7 +17,7 @@ export const Evaluate = (value, root: INode): boolean => {
       // Unique
       return unique[type](_eval, value, {type, data, children});
     }
-    /* istanbul ignore next */ // This error should never be thrown if the tests pass
+    /* istanbul ignore next: This error should never be thrown if the tests pass, so the fact that it's not ran by the tests means that it's working as intended */ 
     throw new Error('Unexpected node type: ' + type);
 	};
   return _eval(value, root[internal]);
