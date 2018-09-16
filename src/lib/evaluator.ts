@@ -11,10 +11,10 @@ export const Evaluate = (value, root: INode): boolean => {
     } else if (type in extractions) {
       // Extraction
       return children[0] === undefined || _eval(extractions[type](value, data), children[0]);
-    } else if (type in unique) {
+    } else /* istanbul ignore else */ if (type in unique) {
       // Unique
       return unique[type](_eval, value, {type, data, children});
-    } /* istanbul ignore else */ else {
+    } else {
       // This error should never be thrown if the tests pass, so the fact that it's not ran by the tests means that it's working as intended
       throw new Error('Unexpected node type: ' + type);
     }
