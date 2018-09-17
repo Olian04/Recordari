@@ -319,4 +319,61 @@ describe('Evaluator', () => {
       [1, false]
     ])
   });
+  test('String', () => {
+    it('Exact', () => {
+      assertAll(Builder.String.Exact('hello'), 'String.Exact("hello")', [
+        ['hello', true],
+        ['bye', false],
+        ['', false]
+      ]);
+    });
+    it('Length', () => {
+      assertAll(Builder.String.Length.Exact(2), 'String.Length.Exact(2)', [
+        ['hi', true],
+        ['bye', false],
+        ['', false]
+      ]);
+    });
+    it('Either', () => {
+      assertAll(Builder.String.Either(['ab', 'bc']), 'String.Either(["ab", "bc"])', [
+        ['ab', true],
+        ['bc', true],
+        ['ac', false],
+        ['ba', false],
+        ['cb', false],
+        ['', false],
+      ]);
+    });
+    it('StartsWith', () => {
+      assertAll(Builder.String.StartsWith('ab'), 'String.StartsWith("ab")', [
+        ['ab', true],
+        ['abc', true],
+        ['ab c', true],
+        ['a b', false],
+        ['acb', false],
+        ['', false],
+      ]);
+    });
+    it('EndsWith', () => {
+      assertAll(Builder.String.EndsWith('ab'), 'String.EndsWith("ab")', [
+        ['ab', true],
+        ['cab', true],
+        ['c ab', true],
+        ['a b', false],
+        ['acb', false],
+        ['', false],
+      ]);
+    });
+    it('Matches', () => {
+      assertAll(Builder.String.Matches(/^a+$/), 'String.Matches(/a+/)', [
+        ['a', true],
+        ['aa', true],
+        ['aaa', true],
+        ['a a', false],
+        ['aa a', false],
+        [' aaa', false],
+        ['', false],
+      ]);
+    });
+  });
 });

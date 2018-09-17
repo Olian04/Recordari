@@ -3,6 +3,7 @@ import { Node_Number } from './number.builder';
 import { Node_Array } from './array.builder';
 import { Node_Void } from './void.builder';
 import { Node_Boolean } from './boolean.builder';
+import { Node_String } from './string.builder';
 
 export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base => ({
   [internal]: root,
@@ -29,6 +30,14 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
       children: []
     });
     return Node_Boolean(root, self.children[0]);
+  },
+  get String() {
+    self.children.push({
+      type: NodeType.String,
+      data: [],
+      children: []
+    });
+    return Node_String(root, self.children[0]);
   },
   and(Rs) {
     // TODO: Add tests to make sure the Rs are all INodes

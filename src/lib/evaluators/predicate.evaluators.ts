@@ -16,4 +16,8 @@ export const predicates: {
   [NodeType.Modulo]: (v, [m, r]) => Math.abs(v) % m === r,
   [NodeType.Either]: (v, [arr]) => arr.find(a => a===v) !== undefined,
   [NodeType.Custom]: (v, [predicate]) => predicate(v),
+  [NodeType.String]: v => typeof v === 'string',
+  [NodeType.StartsWith]: (v, [a]) => v.startsWith(a),
+  [NodeType.EndsWith]: (v, [a]) => v.endsWith(a),
+  [NodeType.Matches]: (v, [regex]) => regex.test(v),
 }
