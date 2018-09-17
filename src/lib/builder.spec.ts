@@ -28,6 +28,12 @@ describe('Builder', () => {
   test('Array', Builder.Array, a =>
     assertChild(a, 0, NodeType.Array)
   );
+  test('String', Builder.String, a =>
+    assertChild(a, 0, NodeType.String)
+  );
+  test('Regex', Builder.Regex, a =>
+    assertChild(a, 0, NodeType.Regex)
+  );
   test('And', Builder.and([ Builder.Number ]), a => {
     assertChild(a, 0, NodeType.And);
     assertChild(a, 1, NodeType.Base);
