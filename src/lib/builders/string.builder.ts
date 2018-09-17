@@ -3,6 +3,14 @@ import { Node_Number } from './number.builder';
 
 export const Node_String = (root: IInternal, self: IInternal): _INode & INode_String => ({
   [internal]: root,
+  get not() {
+    self.children.push({
+      type: NodeType.Not,
+      data: [],
+      children: []
+    });
+    return Node_String(root, self.children[0]);
+  },
   get Length() {
     self.children.push({
       type: NodeType.Length,

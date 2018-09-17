@@ -63,7 +63,7 @@ export interface INode_Boolean extends INode {
   False: INode_Void;
 }
 export interface INode_String extends INode {
-  //not: INode_String;
+  not: INode_String;
   Length: INode_Number;
   Exact(value: string): INode_String;
   StartsWith(value: string): INode_String;

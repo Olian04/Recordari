@@ -341,6 +341,15 @@ describe('Evaluator', () => {
         ['', false]
       ]);
     });
+    it('Not', () => {
+      assertAll(Builder.String.not.Exact('hello'), 'String.not.Exact("hello")', [
+        ['hello', false],
+        ['hell', true],
+        ['helloj', true],
+        ['bye', true],
+        ['', true]
+      ]);
+    });
     it('Length', () => {
       assertAll(Builder.String.Length.Exact(2), 'String.Length.Exact(2)', [
         ['hi', true],
