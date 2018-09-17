@@ -31,7 +31,9 @@ export enum NodeType {
   String = 'String',
   StartsWith = 'StartsWith',
   EndsWith = 'EndsWith',
-  Matches = 'Matches'
+  Matches = 'Matches',
+  Regex = 'Regex',
+  Test = 'Test'
 }
 export interface IInternal {
   type: NodeType;
@@ -71,11 +73,15 @@ export interface INode_String extends INode {
   Either(values: string[]): INode_String;
   Matches(regex: RegExp): INode_String;
 }
+export interface INode_Regex extends INode {
+  Test(value: string): INode_Base;
+}
 export interface INode_Base extends INode {
   Number: INode_Number;
   Array: INode_Array;
   Boolean: INode_Boolean;
   String: INode_String;
+  Regex: INode_Regex;
   and(constraints: INode[]): INode_Void;
   or(constraints: INode[]): INode_Void;
   Custom(predicate: (value: any) => boolean): INode_Base;

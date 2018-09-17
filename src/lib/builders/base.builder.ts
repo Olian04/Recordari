@@ -4,6 +4,7 @@ import { Node_Array } from './array.builder';
 import { Node_Void } from './void.builder';
 import { Node_Boolean } from './boolean.builder';
 import { Node_String } from './string.builder';
+import { Node_Regex } from './regex.builder';
 
 export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base => ({
   [internal]: root,
@@ -30,6 +31,14 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
       children: []
     });
     return Node_Boolean(root, self.children[0]);
+  },
+  get Regex() {
+    self.children.push({
+      type: NodeType.Regex,
+      data: [],
+      children: []
+    });
+    return Node_Regex(root, self.children[0]);
   },
   get String() {
     self.children.push({

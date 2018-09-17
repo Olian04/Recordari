@@ -78,6 +78,23 @@ describe('Evaluator', () => {
       ]);
     });
   });
+  test('Regex', () => {
+    it('Test', () => {
+      assertAll(Builder.Regex.Test('abc'), 'Regex.Test("abc")', [
+        [/a/, true],
+        [/b/, true],
+        [/c/, true],
+        [/ab/, true],
+        [/bc/, true],
+        [/abc/, true],
+        [/ac/, false],
+        [/ /, false],
+        [/1/, false],
+        [/a1b/, false],
+        [/a1c/, false],
+      ]);
+    });
+  });
   test('Number', () => {
     it('Exact', () => {
       assertAll(Builder.Number.Exact(2), 'Number.Exact(2)', [
@@ -186,7 +203,7 @@ describe('Evaluator', () => {
     });
   });
   test('Array', () => {
-    it('Array.Each', () => {
+    it('Each', () => {
       assertAll(Builder.Array.Each, 'Builder.Array.Each', [
         [[], true],
         [[1, '2', [3]], true],
@@ -198,7 +215,7 @@ describe('Evaluator', () => {
         [[1, '2', 3], false]
       ]);
     });
-    it('Array.Contains', () => {
+    it('Contains', () => {
       assertAll(Builder.Array.Contains, 'Builder.Array.Contains', [
         [[], true],
         [[1, '2', [3]], true],
@@ -212,7 +229,7 @@ describe('Evaluator', () => {
         [undefined, false]
       ]);
     });
-    it('Array.Length', () => {
+    it('Length', () => {
       assertAll(Builder.Array.Length, 'Builder.Array.Length', [
         [[], true],
         [[1, '2', [3]], true],
@@ -226,7 +243,7 @@ describe('Evaluator', () => {
         [undefined, false]
       ]);
     });
-    it('Array.Like', () => {
+    it('Like', () => {
       assertAll(Builder.Array.Like([]), 'Array.Like([])', [
         [[], true],
         [[1], false]
