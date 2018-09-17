@@ -81,4 +81,6 @@ export interface INode_Base extends INode {
   Custom(predicate: (value: any) => boolean): INode_Base;
   not: INode_Base;
   Any: INode_Void;
+  Null: INode_Void;
+  Undefined: INode_Void;
 }

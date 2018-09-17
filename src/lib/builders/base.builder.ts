@@ -81,5 +81,21 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
       children: []
     });
     return Node_Void(root);
+  },
+  get Null() {
+    self.children.push({
+      type: NodeType.Exact,
+      data: [null],
+      children: []
+    });
+    return Node_Void(root);
+  },
+  get Undefined() {
+    self.children.push({
+      type: NodeType.Exact,
+      data: [undefined],
+      children: []
+    });
+    return Node_Void(root);
   }
 });
