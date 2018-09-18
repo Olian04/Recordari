@@ -4,22 +4,4 @@
 * Implemented core structure for builder & evaluator
 * Added Array.zip util (used in evaluator for Array.Like)
 * Using CircleCI and Codecov as automated QA.
-
-## Constraints
-- Void
-- Base
-  - and(base[]): Void
-  - or(base[]): Void
-  - not: Base
-  - Any: Void
-  - Number
-  - Array
-- Number
-  - Max(v): Number
-  - Min(v): Number
-  - Exact(v): Number
-- Array
-  - Length: Number
-  - Contains: Base
-  - Each: Base
-  - Like(base[]): Void
+* Implemented all base constraints. _See #9_
