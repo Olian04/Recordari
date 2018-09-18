@@ -21,5 +21,11 @@ export const predicates: {
   [NodeType.EndsWith]: (v, [a]) => v.endsWith(a),
   [NodeType.Matches]: (v, [regex]) => regex.test(v),
   [NodeType.Regex]: v => v instanceof RegExp,
-  [NodeType.Test]: (v, [f]) => f(v)
+  [NodeType.Test]: (v, [f]) => f(v),
+  [NodeType.Object]: v =>
+    typeof v === 'object' &&
+    !predicates[NodeType.Array](v) &&
+    !predicates[NodeType.Regex](v) &&
+    v !== undefined &&
+    v !== null,
 }

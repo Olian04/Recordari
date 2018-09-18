@@ -5,9 +5,18 @@ import { Node_Void } from './void.builder';
 import { Node_Boolean } from './boolean.builder';
 import { Node_String } from './string.builder';
 import { Node_Regex } from './regex.builder';
+import { Node_Object } from './object.builder';
 
 export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base => ({
   [internal]: root,
+  get Object() {
+    self.children.push({
+      type: NodeType.Object,
+      data: [],
+      children: []
+    });
+    return Node_Object(root, self.children[0]);
+  },
   get Number() {
     self.children.push({
       type: NodeType.Number,

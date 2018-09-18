@@ -10,7 +10,7 @@ import { NodeType } from './builder.interface';
 const assertAll = (constraint, strRepConstraint: string, valuesToTest: [any, boolean][]) => {
   valuesToTest.forEach(([v, res]) => {
     const evaluation = Evaluate(v, constraint);
-    expect(evaluation, `Expected Evaluate(${v}, ${strRepConstraint}) to be ${res}`).to.equal(res);
+    expect(evaluation, `Expected Evaluate(${v}, ${strRepConstraint}) to be ${res}`).to.deep.equal(res);
   });
 }
 
@@ -34,7 +34,7 @@ const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: Don
     [[], dontExhaust === DontExhaust.Array],
     [[1], dontExhaust === DontExhaust.Array],
     [[0], dontExhaust === DontExhaust.Array],
-    [{}, dontExhaust === DontExhaust.Object], // Remember to test for func, null, undefined, arr
+    [({}), dontExhaust === DontExhaust.Object],
     [() => { }, dontExhaust === DontExhaust.Function],
     ["a", dontExhaust === DontExhaust.String],
     ["2", dontExhaust === DontExhaust.String],
@@ -63,6 +63,26 @@ describe('Evaluator', () => {
         k in unique,
         `Evaluator missing for NodeType.${k}`).to.be.true
       );
+  });
+  test('Object', () => {
+    it('Keys', () => {
+      assertAll(Builder.Object.Keys.Length.Exact(2), 'Object.Keys.Length.Exact(2)', [
+        [{a: 1, b: 2}, true],
+        [{ 1: 'a', 2: 'b'}, true],
+        [{a: 1}, false],
+        [{}, false],
+        [{ 1: 'a'}, false],
+      ]);
+    });
+    it('Values', () => {
+      assertAll(Builder.Object.Values.Each.Number, 'Object.Values.Each.Number', [
+        [{a: 'a', b: 'a'}, false],
+        [{a: 'a'}, false],
+        [{}, true],
+        [{a: 1}, true],
+        [{a: 1, b: 2}, true],
+      ]);
+    });
   });
   test('Boolean', () => {
     it('True', () => {
