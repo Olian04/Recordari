@@ -18,7 +18,8 @@ export enum NodeType {
   Length = 'Length',
   Each = 'Each',
   Contains = 'Contains',
-  Like = 'Like',
+  LikeArray = 'LikeArray',
+  LikeObject = 'LikeObject',
   Array = 'Array',
   And = 'And',
   Or = 'Or',
@@ -85,6 +86,7 @@ export interface INode_Regex extends INode {
 export interface INode_Object extends INode {
   Values: INode_Array;
   Keys: INode_Array;
+  Like(obj: { [k: string]: INode }): INode_Void;
 }
 export interface INode_Base extends INode {
   not: INode_Base;

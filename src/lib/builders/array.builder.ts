@@ -37,7 +37,7 @@ export const Node_Array = (root: IInternal, self: IInternal):  _INode & INode_Ar
   },
   Like(Rs) {
     self.children.push({
-      type: NodeType.Like,
+      type: NodeType.LikeArray,
       data: [],
       children: Rs.map(r => r[internal])
     });

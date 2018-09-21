@@ -65,6 +65,14 @@ describe('Evaluator', () => {
       );
   });
   test('Object', () => {
+    it('Like', () => {
+      assertAll(Builder.Object.Like({ foo: Builder.Number }), 'Object.Keys.Like({ foo: Builder.Number })', [
+        [{ foo: 1 }, true],
+        [{ foo: '1' }, false],
+        [{}, false],
+        [{  foo: 1, bar: 2 }, false],
+      ]);
+    });
     it('Keys', () => {
       assertAll(Builder.Object.Keys.Length.Exact(2), 'Object.Keys.Length.Exact(2)', [
         [{a: 1, b: 2}, true],
