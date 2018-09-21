@@ -1,11 +1,13 @@
 export const internal = Symbol('builder-internal');
 
+//#region These are needed in order to strictly type the tests for the builder
 export type _INode = {
   [internal]: IInternal;
 }
 export const hasInternal = (node: object): node is _INode => {
   return internal in node;
 }
+//#endregion
 
 export enum NodeType {
   Base = 'Base',
@@ -43,9 +45,10 @@ export interface IInternal {
   data: any[];
   children: IInternal[];
 }
+
+//#region Interfaces for each builder node-type
 export interface INode { } // Used to refer to any Node
 export interface INode_Void extends INode { }
-
 export interface INode_Number extends INode {
   not: INode_Number;
   Whole: INode_Number;
@@ -84,17 +87,18 @@ export interface INode_Object extends INode {
   Keys: INode_Array;
 }
 export interface INode_Base extends INode {
-  Number: INode_Number;
-  Array: INode_Array;
-  Boolean: INode_Boolean;
-  String: INode_String;
-  Object: INode_Object;
-  Regex: INode_Regex;
-  and(constraints: INode[]): INode_Void;
-  or(constraints: INode[]): INode_Void;
-  Custom(predicate: (value: any) => boolean): INode_Base;
   not: INode_Base;
   Any: INode_Void;
   Null: INode_Void;
   Undefined: INode_Void;
+  Object: INode_Object;
+  Number: INode_Number;
+  Boolean: INode_Boolean;
+  String: INode_String;
+  Array: INode_Array;
+  Regex: INode_Regex;
+  and(constraints: INode[]): INode_Void;
+  or(constraints: INode[]): INode_Void;
+  Custom(predicate: (value: any) => boolean): INode_Base;
 }
+//#endregion
