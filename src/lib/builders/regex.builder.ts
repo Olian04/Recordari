@@ -1,5 +1,5 @@
 import { internal, NodeType, IInternal, _INode, INode_Regex } from '../builder.interface';
-import { Node_Base } from './base.builder';
+import { Node_Boolean } from './boolean.builder';
 
 export const Node_Regex = (root: IInternal, self: IInternal): _INode & INode_Regex => ({
   [internal]: root,
@@ -9,6 +9,6 @@ export const Node_Regex = (root: IInternal, self: IInternal): _INode & INode_Reg
       data: [regex => regex.test(val)],
       children: []
     });
-    return Node_Base(root, self.children[0]);
+    return Node_Boolean(root, self.children[0]);
   }
 });

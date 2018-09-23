@@ -81,7 +81,7 @@ export interface INode_String extends INode {
   Matches(regex: RegExp): INode_String;
 }
 export interface INode_Regex extends INode {
-  Test(value: string): INode_Base;
+  Test(value: string): INode_Boolean;
 }
 export interface INode_Object extends INode {
   Values: INode_Array;
