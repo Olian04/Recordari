@@ -95,6 +95,13 @@ const demo = RDemo({ a: 'hi' }); // Will throw TypeError
 console.log(demo.a); // Won't be executed
 ```
 
+## Constraints
+
+*See [docs/constraints.md](docs/constraints.md)*
+
+A great way to explore the available constraints is through intellisense exploration. Either by using typescript or by using a typescript enabled editor with javascript *(such as [vscode](https://code.visualstudio.com/))*.
+
+
 ## Example
 
 ```ts
