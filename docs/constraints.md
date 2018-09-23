@@ -187,7 +187,7 @@ RCustom({ foo: undefined }); // FAIL
 
 ---
 
-## not *{EX}*
+## not *{X}*
 `R.not` is used to invert the expected truthyness of any following constraints. <br>
 `R.not` will evaluate to true if any constraint following it evaluates to false.
 
@@ -196,8 +196,8 @@ const Rnot = Record('not', {
   foo: R.not.Number
 });
 
-Rand({ foo: '2' }); // OK
-Rand({ foo: 2 }); // FAIL
+Rnot({ foo: '2' }); // OK
+Rnot({ foo: 2 }); // FAIL
 ```
 
 ---
@@ -216,8 +216,139 @@ RNull({ foo: undefined }); // FAIL
 
 ---
 
-## Number
-<!-- TODO: -->
+## Number *{AS}*
+`R.Number` is used to assert that a value is a number.
+
+```js
+const RNumber = Record('Number', {
+  foo: R.Number
+});
+
+RNumber({ foo: 2 }); // OK
+RNumber({ foo: '2' }); // FAIL
+```
+
+### Number.Between *{AP}*
+`R.Number.Between` is used to assert that a number is between two number (inclusive). <br>
+`R.Number.Between` expects two number as arguments *(the order is not important)*.
+
+```js
+const RBetween = Record('Between', {
+  foo: R.Number.Between(1, 2)
+});
+
+RBetween({ foo: 2 }); // OK
+RBetween({ foo: '2' }); // FAIL
+```
+
+### Number.Either *{AP}*
+`R.Number.Either` is used to assert that a number is equal to one of a given set of numbers. <br>
+`R.Number.Either` takes an array of numbers as an argument.
+
+```js
+const REither = Record('Either', {
+  foo: R.Number.Either([1, 2])
+});
+
+REither({ foo: 2 }); // OK
+REither({ foo: 1 }); // OK
+REither({ foo: 3 }); // FAIL
+```
+
+### Number.Exact *{AP}*
+`R.Number.Exact` is used to assert that a number is equal to a given number. <br>
+`R.Number.Exact` takes a number as an argument.
+
+```js
+const RExact = Record('Exact', {
+  foo: R.Number.Exact(2)
+});
+
+RExact({ foo: 2 }); // OK
+RExact({ foo: 3 }); // FAIL
+```
+
+### Max *{AP}*
+`R.Number.Max` is used to assert that a number less than or equal to a given number. <br>
+`R.Number.Max` takes a number as an argument.
+
+```js
+const RMax = Record('Max', {
+  foo: R.Number.Max(2)
+});
+
+RMax({ foo: 2 }); // OK
+RMax({ foo: 1 }); // OK
+RMax({ foo: 3 }); // FAIL
+```
+
+### Min *{AP}*
+`R.Number.Min` is used to assert that a number greater than or equal to a given number. <br>
+`R.Number.Min` takes a number as an argument.
+
+```js
+const RMin = Record('Min', {
+  foo: R.Number.Min(2)
+});
+
+RMin({ foo: 3 }); // OK
+RMin({ foo: 4 }); // OK
+RMin({ foo: 2 }); // FAIL
+```
+
+### Mod *{AP}*
+`R.Number.Mod` is used to assert that a number modulo a number A equals a number B. <br>
+`R.Number.Mod` takes two numbers as arguments, `A` & `B`, so that `value % A === B`.
+
+```js
+const RMod = Record('Mod', {
+  foo: R.Number.Mod(2, 1)
+});
+
+RMod({ foo: 3 }); // OK
+RMod({ foo: 1 }); // OK
+RMod({ foo: 2 }); // FAIL
+```
+
+### Natural *{AP}*
+`R.Number.Natural` is used to assert that a number is part of the natural numbers, aka is whole and positive *(including 0)*. <br>
+
+```js
+const RNatural = Record('Natural', {
+  foo: R.Number.Natural
+});
+
+RNatural({ foo: 1 }); // OK
+RNatural({ foo: 1.1 }); // FAIL
+RNatural({ foo: -1 }); // FAIL
+```
+
+### not *{X}*
+`R.Number.not` is used to invert the expected truthyness of any following constraints. <br>
+`R.Number.not` will evaluate to true if any constraint following it evaluates to false.
+
+```js
+const Rnot = Record('not', {
+  foo: R.Number.not.Natural
+});
+
+Rnot({ foo: 1.1 }); // OK
+Rnot({ foo: -1 }); // OK
+Rnot({ foo: 1 }); // FAIL
+```
+
+### Whole
+`R.Number.Whole` is used to assert that a number is part of the whole numbers, aka `value % 1 === 0` *(including 0)*. <br>
+
+```js
+const RNatural = Record('Natural', {
+  foo: R.Number.Natural
+});
+
+RNatural({ foo: 1 }); // OK
+RNatural({ foo: 1.1 }); // FAIL
+RNatural({ foo: -1 }); // FAIL
+```
 
 ---
 
