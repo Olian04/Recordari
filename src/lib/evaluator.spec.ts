@@ -42,7 +42,6 @@ const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: Don
     ["123", dontExhaust === DontExhaust.String],
     ["abc", dontExhaust === DontExhaust.String],
     [/ /, dontExhaust === DontExhaust.Regex]
-    // TODO: Decide on what to do with "null" and "undefined"
   ].map(([v, b]) => [v, invert ? !b : b]) as [any, boolean][])
   );
 }
@@ -120,6 +119,20 @@ describe('Evaluator', () => {
         [/1/, false],
         [/a1b/, false],
         [/a1c/, false],
+      ]);
+      // Regex.Test is just an extractor, it doesn't assert the truthyness of the evaluation
+      assertAll(Builder.Regex.Test('abc'), 'Regex.Test("abc")', [
+        [/a/, true],
+        [/b/, true],
+        [/c/, true],
+        [/ab/, true],
+        [/bc/, true],
+        [/abc/, true],
+        [/ac/, true],
+        [/ /, true],
+        [/1/, true],
+        [/a1b/, true],
+        [/a1c/, true],
       ]);
     });
   });
