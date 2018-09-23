@@ -174,7 +174,7 @@ RTrue({ foo: false }); // FAIL
 ---
 
 ## Custom *{AP}*
-> *If you find your self using this constraint often, please consider submitting an issue about it!* <br>
+> *If you find your self using this constraint often, please consider submitting an issue about that usecase!*
 
 `R.Custom` is used in those cases where the constraints provided by Recordjs isn't enough. <br>
 `R.Custom` takes a synchronous function as an argument. This function should be of the signature `(value: any) => boolean`, and should return `true` if the value is considered to have passed the custom assertion logic.
