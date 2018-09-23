@@ -103,7 +103,42 @@ RArrayLike({ foo: ['10', 20] }); // FAIL
 RArrayLike({ foo: [] }); // FAIL
 ```
 
-## Boolean
+## Boolean *{AS}*
+`R.Boolean` is used to assert that a value is a boolean.
+
+```js
+const RBoolean = Record('Boolean', {
+  foo: R.Boolean
+});
+
+RBoolean({ foo: false }); // OK
+RBoolean({ foo: 10 }); // FAIL
+```
+
+### Boolean.False *(Boolean)*
+`R.Boolean.False` is used to assert that a value is should be equal to `false`.
+
+```js
+const RFalse = Record('False', {
+  foo: R.Boolean.False
+});
+
+RFalse({ foo: false }); // OK
+RFalse({ foo: true }); // FAIL
+```
+
+### Boolean.True *(Boolean)*
+`R.Boolean.False` is used to assert that a value is should be equal to `true`.
+
+```js
+const RTrue = Record('True', {
+  foo: R.Boolean.True
+});
+
+RTrue({ foo: true }); // OK
+RTrue({ foo: false }); // FAIL
+```
+
 ## Custom
 ## Null
 ## Number
