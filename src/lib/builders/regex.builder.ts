@@ -5,10 +5,14 @@ export const Node_Regex = (root: IInternal, self: IInternal): _INode & INode_Reg
   [internal]: root,
   Test(val: string) {
     self.children.push({
-      type: NodeType.Test,
+      type: NodeType.Run,
       data: [regex => regex.test(val)],
-      children: []
+      children: [{
+        type: NodeType.Boolean,
+        data: [],
+        children:[]
+      }]
     });
-    return Node_Boolean(root, self.children[0]);
+    return Node_Boolean(root, self.children[0].children[0]);
   }
 });

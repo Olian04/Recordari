@@ -6,4 +6,5 @@ export const extractions: {
   [NodeType.Length]: v => v.length,
   [NodeType.Keys]: v => Object.keys(v),
   [NodeType.Values]: v => Object.values(v),
+  [NodeType.Run]: (v, [f]) => f(v),
 }

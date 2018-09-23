@@ -36,7 +36,7 @@ export enum NodeType {
   EndsWith = 'EndsWith',
   Matches = 'Matches',
   Regex = 'Regex',
-  Test = 'Test',
+  Run = 'Run',
   Values = 'Values',
   Keys = 'Keys',
   Object =  'Object',

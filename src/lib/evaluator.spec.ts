@@ -108,7 +108,7 @@ describe('Evaluator', () => {
   });
   test('Regex', () => {
     it('Test', () => {
-      assertAll(Builder.Regex.Test('abc'), 'Regex.Test("abc")', [
+      assertAll(Builder.Regex.Test('abc').True, 'Regex.Test("abc")', [
         [/a/, true],
         [/b/, true],
         [/c/, true],
