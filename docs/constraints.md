@@ -1,15 +1,16 @@
 # Constraints
 
-In Recordjs the way you construct Records are through the use of constraints. There are many different kinds of constraints, and these different kinds will be denoted by a letter in the heading:
+In Recordjs the way you construct Records are through the use of constraints.<br>
+There are many different kinds of constraints. In order to explain them without repeating myself, I've maked each one with one or more of these 6 notations.
 
-|   Denoted           | Meaning                               |
-|:-------------------:|:---------------------------------:|
-|          *{A}*           | will perform type assertions |
-|          *{S}*           | will expose a set of sub-constraints |
-|          *{P}*           | will accept parameters |
-|          *{X}*           | will change the nature of the evaluation |
-|          *{E}*           | will end the constraint construction |
-|          *(name)*  | will expose the same constraints as the constraint name "name" |
+|   Notation  | Meaning                                                        |
+|:-----------:|:--------------------------------------------------------------:|
+|    *{A}*    | will perform type assertions                                   |
+|    *{S}*    | will expose a set of sub-constraints                           |
+|    *{P}*    | will accept parameters                                         |
+|    *{X}*    | will change the nature of the evaluation                       |
+|    *{E}*    | will end the constraint construction                           |
+|   *(name)*  | will expose the same constraints as the constraint name "name" |
 
 Unless a constraint is maked with *{E}* or *{S}* it will expose the sub-set it self belongs to, allowing for chaining constraints of the same sub-set. Ex: `R.Number.Whole.Min(0).Max(2)` *(0, 1, or 2)*
 
