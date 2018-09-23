@@ -268,7 +268,7 @@ RExact({ foo: 2 }); // OK
 RExact({ foo: 3 }); // FAIL
 ```
 
-### Max *{AP}*
+### Number.Max *{AP}*
 `R.Number.Max` is used to assert that a number less than or equal to a given number. <br>
 `R.Number.Max` takes a number as an argument.
 
@@ -282,7 +282,7 @@ RMax({ foo: 1 }); // OK
 RMax({ foo: 3 }); // FAIL
 ```
 
-### Min *{AP}*
+### Number.Min *{AP}*
 `R.Number.Min` is used to assert that a number greater than or equal to a given number. <br>
 `R.Number.Min` takes a number as an argument.
 
@@ -296,7 +296,7 @@ RMin({ foo: 4 }); // OK
 RMin({ foo: 2 }); // FAIL
 ```
 
-### Mod *{AP}*
+### Number.Mod *{AP}*
 `R.Number.Mod` is used to assert that a number modulo a number A equals a number B. <br>
 `R.Number.Mod` takes two numbers as arguments, `A` & `B`, so that `value % A === B`.
 
@@ -310,7 +310,7 @@ RMod({ foo: 1 }); // OK
 RMod({ foo: 2 }); // FAIL
 ```
 
-### Natural *{AP}*
+### Number.Natural *{AP}*
 `R.Number.Natural` is used to assert that a number is part of the natural numbers, aka is whole and positive *(including 0)*. <br>
 
 ```js
@@ -323,7 +323,7 @@ RNatural({ foo: 1.1 }); // FAIL
 RNatural({ foo: -1 }); // FAIL
 ```
 
-### not *{X}*
+### Number.not *{X}*
 `R.Number.not` is used to invert the expected truthyness of any following constraints. <br>
 `R.Number.not` will evaluate to true if any constraint following it evaluates to false.
 
@@ -337,7 +337,7 @@ Rnot({ foo: -1 }); // OK
 Rnot({ foo: 1 }); // FAIL
 ```
 
-### Whole
+### Number.Whole
 `R.Number.Whole` is used to assert that a number is part of the whole numbers, aka `value % 1 === 0` *(including 0)*. <br>
 
 ```js
