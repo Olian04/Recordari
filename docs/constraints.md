@@ -11,6 +11,8 @@ In Recordjs the way you construct Records are through the use of constraints. Th
 |          *{E}*           | will end the constraint construction |
 |          *(name)*  | will expose the same constraints as the constraint name "name" |
 
+Unless a constraint is maked with *{E}* or *{S}* it will expose the sub-set it self belongs to, allowing for chaining constraints of the same sub-set. Ex: `R.Number.Whole.Min(0).Max(2)` *(0, 1, or 2)*
+
 ---
 
 ## R *{S}*
