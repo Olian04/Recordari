@@ -26,9 +26,9 @@ const RDemo = Record('Demo', {
 });
 ```
 
-*Following is all available constraints in alphabetical order*
-
 ---
+
+*Following is all available constraints in alphabetical order*
 
 ## Any *{E}*
 `R.Any` will be true for any value. <br>
