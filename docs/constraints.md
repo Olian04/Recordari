@@ -181,7 +181,7 @@ RNull({ foo: undefined }); // FAIL
 ## Regex
 ## String
 
-## Undefined
+## Undefined *{AE}*
 `R.Undefined` is used to assert that a value is equal to `undefined`.
 
 ```js
