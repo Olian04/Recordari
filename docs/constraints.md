@@ -452,7 +452,107 @@ RRegexTest({ foo: /b/ }); // FAIL
 ---
 
 ## String *{AS}*
-<!-- TODO: -->
+`R.String` is used to assert that a value is a string`.
+
+```js
+const RString = Record('String', {
+  foo: R.String
+});
+
+RString({ foo: '1' }); // OK
+RString({ foo: 1 }); // FAIL
+```
+
+### String.Either *{AP}*
+`R.String.Either` is used to assert that a string is equal to one of a given set of strings. <br>
+`R.String.Either` takes an array of strings as an argument.
+
+```js
+const REither = Record('Either', {
+  foo: R.String.Either(['1', '2'])
+});
+
+REither({ foo: '2' }); // OK
+REither({ foo: '1' }); // OK
+REither({ foo: '3' }); // FAIL
+```
+
+### String.EndsWith *{AP}*
+`R.String.EndsWith` is used to assert that the string should end with a given string. <br>
+`R.String.EndsWith` takes a string as an argument.
+
+```js
+const REndsWith = Record('EndsWith', {
+  foo: R.String.EndsWith('2')
+});
+
+REndsWith({ foo: '12' }); // OK
+REndsWith({ foo: '13' }); // FAIL
+```
+
+### String.Exact *{AP}*
+`R.String.Exact` is used to assert that a string is equal to a given string. <br>
+`R.String.Exact` takes a string as an argument.
+
+```js
+const RExact = Record('Exact', {
+  foo: R.String.Exact('2')
+});
+
+RExact({ foo: '2' }); // OK
+RExact({ foo: '3' }); // FAIL
+```
+
+### String.Length *(Number)*
+`R.String.Length` is used to apply a constraint on the length of an string.
+
+```js
+const RLength = Record('Length', {
+  foo: R.String.Length.Exact(2)
+});
+
+RLength({ foo: 'ab' }); // OK
+RLength({ foo: 'a' }); // FAIL
+RLength({ foo: 'abc' }); // FAIL
+```
+
+### String.Matches *{AP}*
+`R.String.Matches` is used to assert that a string matches a given regex.
+
+```js
+const RMatches = Record('Matches', {
+  foo: R.String.Matches(/a/)
+});
+
+RMatches({ foo: 'a' }); // OK
+RMatches({ foo: 'b' }); // FAIL
+```
+
+### String.not *{X}*
+`R.String.not` is used to invert the expected truthyness of any following constraints. <br>
+`R.String.not` will evaluate to true if any constraint following it evaluates to false.
+
+```js
+const Rnot = Record('not', {
+  foo: R.String.not.Exact('1')
+});
+
+Rnot({ foo: '2' }); // OK
+Rnot({ foo: '1' }); // FAIL
+```
+
+### String.StartWith *{AP}*
+`R.String.StartWith` is used to assert that the string should start with a given string. <br>
+`R.String.StartWith` takes a string as an argument.
+
+```js
+const RStartWith = Record('StartWith', {
+  foo: R.String.StartWith('2')
+});
+
+RStartWith({ foo: '21' }); // OK
+RStartWith({ foo: '31' }); // FAIL
+```
 
 ---
 
