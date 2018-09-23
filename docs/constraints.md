@@ -124,7 +124,7 @@ RBoolean({ foo: 10 }); // FAIL
 ```
 
 ### Boolean.False *(Boolean)*
-`R.Boolean.False` is used to assert that a value is should be equal to `false`.
+`R.Boolean.False` is used to assert that a value is equal to `false`.
 
 ```js
 const RFalse = Record('False', {
@@ -136,7 +136,7 @@ RFalse({ foo: true }); // FAIL
 ```
 
 ### Boolean.True *(Boolean)*
-`R.Boolean.False` is used to assert that a value is should be equal to `true`.
+`R.Boolean.False` is used to assert that a value is equal to `true`.
 
 ```js
 const RTrue = Record('True', {
@@ -160,57 +160,42 @@ const RCustom = Record('Custom', {
   foo: R.Custom(v => v.foo !== undefined)
 });
 
-RArray({ foo: 10 }); // OK
-RArray({ foo: undefined }); // FAIL
+RCustom({ foo: 10 }); // OK
+RCustom({ foo: undefined }); // FAIL
 ```
 
-## Null
+## Null *{AE}*
+`R.Null` is used to assert that a value is equal to `null`.
+
+```js
+const RNull = Record('Null', {
+  foo: R.Null
+});
+
+RNull({ foo: null }); // OK
+RNull({ foo: undefined }); // FAIL
+```
+
 ## Number
 ## Object
 ## Regex
 ## String
+
 ## Undefined
+`R.Undefined` is used to assert that a value is equal to `undefined`.
+
+```js
+const RUndefined = Record('Undefined', {
+  foo: R.Undefined
+});
+
+RUndefined({ foo: undefined }); // OK
+RUndefined({ foo: null }); // FAIL
+```
 
 # Planed constraints
 These are constraints that are on the roadmap but are yet to be implemented
 
-* R
-  * not: R
-  * or(R[]): Void
-  * and(R[]): Void
-  * Number: Number
-  * String: String
-  * Boolean: Boolean
-  * Function: Function
-  * Array: Array
-  * Object: Object
-  * Regex: Regex
-  * Null: Void
-  * Undefined: Void
-  * Any: Void
-  * Custom(predicate): R
-* Number
-  * not: Number
-  * Natural: Number
-  * Decimal: Number
-  * Whole: Number
-  * Max(num): Number
-  * Min(num): Number
-  * Exact(num): Number
-  * Either(num[]): Number
-  * Between(num_a, num_b): Number
-* String
-  * not: String
-  * Length: Number
-  * Each: String
-  * Exact(str): String
-  * Either(str[]): String
-  * StartsWith(str): String
-  * EndsWith(str): String
-  * Matches(regex): String
-* Boolean
-  * True: Void
-  * False: Void
 * Function
   * Arguments: Function_Arguments
   * Test(...args): R
@@ -218,15 +203,3 @@ These are constraints that are on the roadmap but are yet to be implemented
   * Length: Number
   * Contains: String
   * Each: String
-* Array
-  * Length: Number
-  * Contains: R
-  * Each: R
-  * Like(array): Void
-* Object
-  * Values: Array
-  * Keys: Array
-  * Like(obj): Void
-* Regex
-  * Test(str): Boolean
-* Void
