@@ -11,6 +11,8 @@ In Recordjs the way you construct Records are through the use of constraints. Th
 |          *{E}*           | will end the constraint construction |
 |          *(name)*  | will expose the same constraints as the constraint name "name" |
 
+---
+
 ## R *{S}*
 `R` is the base constraint of Recordjs, this is where all other constraints originate from. <br>
 On its own the `R` constraint doesn't provide any logic, so it will fail if used alone.
@@ -20,6 +22,8 @@ const RDemo = Record('Demo', {
   foo: R // This is not valid, and will fail on record constructions
 });
 ```
+
+---
 
 ## Any *{E}*
 `R.Any` will be true for any value. <br>
@@ -34,6 +38,8 @@ RAny({ foo: 10 }); // OK
 RAny({ foo: 'hi' }); // OK
 RAny({ }); // FAIL
 ```
+
+---
 
 ## Array *{AS}*
 `R.Array` is used to assert that a value is an array.
@@ -103,6 +109,8 @@ RArrayLike({ foo: ['10', 20] }); // FAIL
 RArrayLike({ foo: [] }); // FAIL
 ```
 
+---
+
 ## Boolean *{AS}*
 `R.Boolean` is used to assert that a value is a boolean.
 
@@ -139,7 +147,23 @@ RTrue({ foo: true }); // OK
 RTrue({ foo: false }); // FAIL
 ```
 
-## Custom
+---
+
+## Custom *{AP}*
+> *If you find your self using this constraint often, please consider submitting an issue about it!* <br>
+
+`R.Custom` is used in those cases where the constraints provided by Recordjs isn't enough. <br>
+`R.Custom` takes a synchronous function as an argument. This function should be of the signature `(value: any) => boolean`, and should return `true` if the value is considered to have passed the custom assertion logic.
+
+```js
+const RCustom = Record('Custom', {
+  foo: R.Custom(v => v.foo !== undefined)
+});
+
+RArray({ foo: 10 }); // OK
+RArray({ foo: undefined }); // FAIL
+```
+
 ## Null
 ## Number
 ## Object
