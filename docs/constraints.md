@@ -41,6 +41,11 @@ RAny({ }); // FAIL
 
 ---
 
+## and *{EX}*
+<!-- TODO: -->
+
+--
+
 ## Array *{AS}*
 `R.Array` is used to assert that a value is an array.
 
@@ -164,6 +169,13 @@ RCustom({ foo: 10 }); // OK
 RCustom({ foo: undefined }); // FAIL
 ```
 
+---
+
+## not *{EX}*
+<!-- TODO: -->
+
+---
+
 ## Null *{AE}*
 `R.Null` is used to assert that a value is equal to `null`.
 
@@ -176,10 +188,102 @@ RNull({ foo: null }); // OK
 RNull({ foo: undefined }); // FAIL
 ```
 
+---
+
 ## Number
-## Object
-## Regex
-## String
+<!-- TODO: -->
+
+---
+
+## Object *{AS}*
+`R.Object` is used to assert that a value is an object.
+
+```js
+const RObject = Record('Object', {
+  foo: R.Object
+});
+
+RObject({ foo: {} }); // OK
+RObject({ foo: [] }); // FAIL
+RObject({ foo: 2 }); // FAIL
+```
+
+### Object.Values *(Array)*
+`R.Object.Values` is used to apply a constraint to value of the object.
+
+```js
+const RValues = Record('Values', {
+  foo: R.Object.Values.Number
+});
+
+RValues({ foo: 10 }); // OK
+RValues({ foo: '10' }); // FAIL
+```
+
+### Object.Keys *(Array)*
+`R.Object.Keys` is used to apply a constraint to value of the object.
+
+```js
+const RKeys = Record('Keys', {
+  foo: R.Object.Keys.Length.Exact(1)
+});
+
+RKeys({ foo: 10 }); // OK
+RKeys({ foo: 10, bar: '10' }); // FAIL
+```
+
+### Object.Like *(Array)*
+`R.Object.Like` is used to apply a constraint to value of the object.
+
+```js
+const RLike = Record('Like', {
+  foo: R.Object.Like({ bar: R.Number })
+});
+
+RLike({ foo: { bar: 10 } }); // OK
+RLike({ foo: { bar: '10' } }); // FAIL
+RLike({ foo: {} }); // FAIL
+```
+
+---
+
+## or *{EX}*
+<!-- TODO: -->
+
+---
+
+## Regex *{AS}*
+`R.Regex` is used to assert that a value is a regex.
+
+```js
+const RRegex = Record('Regex', {
+  foo: R.Regex
+});
+
+RRegex({ foo: / / }); // OK
+RRegex({ foo: ' ' }); // FAIL
+```
+
+### Regex.Test *{P}(Boolean)*
+`R.Regex.Test` is used to assert that a regex should match or not match a given string. <br>
+`R.Regex.Test` takes one string argument and tests the regex on it. <br>
+`R.Regex.Test` only executes the regex but does not assert the resulting value. You will have to explicitly tell Recordjs if the Test should evaluate to True or False.
+
+```js
+const RRegexTest = Record('RegexTest', {
+  foo: R.Regex.Test('a').True
+});
+
+RRegexTest({ foo: /a/ }); // OK
+RRegexTest({ foo: /b/ }); // FAIL
+```
+
+---
+
+## String *{AS}*
+<!-- TODO: -->
+
+---
 
 ## Undefined *{AE}*
 `R.Undefined` is used to assert that a value is equal to `undefined`.
@@ -192,6 +296,8 @@ const RUndefined = Record('Undefined', {
 RUndefined({ foo: undefined }); // OK
 RUndefined({ foo: null }); // FAIL
 ```
+
+---
 
 # Planed constraints
 These are constraints that are on the roadmap but are yet to be implemented
