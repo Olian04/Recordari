@@ -15,9 +15,15 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.Length,
       data: [],
-      children: []
+      children: [
+        {
+          type: NodeType.Number,
+          data: [],
+          children: []
+        }
+      ]
     });
-    return Node_Number(root, self.children[0]);
+    return Node_Number(root, self.children[0].children[0]);
   },
   Exact(val: string) {
     self.children.push({
