@@ -23,6 +23,8 @@ const RDemo = Record('Demo', {
 });
 ```
 
+*Following is all available constraints in alphabetical order*
+
 ---
 
 ## Any *{E}*
@@ -42,9 +44,23 @@ RAny({ }); // FAIL
 ---
 
 ## and *{EX}*
-<!-- TODO: -->
+`R.and` is used when a value needs to comply to multiple constraints which can not be expressed as a single constraint. <br>
+`R.and` takes an array of constraints as an argument, and will evaluate to true if all of them evaluates to true.
 
---
+```js
+const Rand = Record('and', {
+  foo: R.and([
+    R.Regex.Test('a').True,
+    R.Regex.Test('b').True,
+    R.Regex.Test('ab').False
+  ])
+});
+
+Rand({ foo: /a|b/ }); // OK
+Rand({ foo: /a?b?/ }); // FAIL
+```
+
+---
 
 ## Array *{AS}*
 `R.Array` is used to assert that a value is an array.
@@ -172,7 +188,17 @@ RCustom({ foo: undefined }); // FAIL
 ---
 
 ## not *{EX}*
-<!-- TODO: -->
+`R.not` is used to invert the expected truthyness of any following constraints. <br>
+`R.not` will evaluate to true if any constraint following it evaluates to false.
+
+```js
+const Rnot = Record('not', {
+  foo: R.not.Number
+});
+
+Rand({ foo: '2' }); // OK
+Rand({ foo: 2 }); // FAIL
+```
 
 ---
 
@@ -248,7 +274,21 @@ RLike({ foo: {} }); // FAIL
 ---
 
 ## or *{EX}*
-<!-- TODO: -->
+`R.or` is used when a value could be one of many different types.<br>
+`R.or` takes an array of constraints as an argument, and will evaluate to true if one or more of them evaluates to true.
+
+```js
+const Ror = Record('or', {
+  foo: R.or([
+    R.String,
+    R.Regex
+  ])
+});
+
+Ror({ foo: / / }); // OK
+Ror({ foo: ' ' }); // OK
+Ror({ foo: 42 }); // FAIL
+```
 
 ---
 
