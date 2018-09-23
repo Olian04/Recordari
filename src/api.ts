@@ -1,14 +1,11 @@
-export { Builder as R } from './lib/builder';
-
+import { Builder } from './lib/builder';
 import { Evaluate } from './lib/evaluator';
 
-/*
-// This is the endgoal for v1.0.0
-// v2.0.0 should focus on bringing custom errors based on what failed.
+export const R = Builder;
 export const Record = (type: string, objectConstraint) => (obj: Object) => {
-  if (!Evaluate(obj, R.Object.Like(objectConstraint))) {
-    throw new Error(`Assertion for record instance of type ${type} failed!`);
+  if (!Evaluate(obj, Builder.Object.Like(objectConstraint))) {
+    //TODO: The error message should reflect what part of the record that failed and why
+    throw new TypeError(`Failed to construct a record of type "${type}", object does not comply to the constraints of a ${type} record.`);
   }
   return obj;
 }
-*/
