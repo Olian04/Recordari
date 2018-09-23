@@ -19,7 +19,7 @@ const RConfig = Record('MyConfig', {
 });
 
 // 2) Test the actual configurations against the Record
-const config = RConfig(require('config.json')); // Will throw if the constraints fail
+const config = RConfig(require('config.json')); // Will throw if any of the constraints fail
 
 // 3) You can use all of the properties on config without worrying about some of them not being valid.
 config.loglevel // Will ALWAYS be valid
