@@ -241,7 +241,7 @@ const RBetween = Record('Between', {
 });
 
 RBetween({ foo: 2 }); // OK
-RBetween({ foo: '2' }); // FAIL
+RBetween({ foo: 3 }); // FAIL
 ```
 
 ### Number.Either *{AP}*
