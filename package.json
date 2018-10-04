@@ -1,5 +1,5 @@
 {
-  "name": "record",
+  "name": "record.js",
   "version": "1.0.0",
   "description": "Record.js is a type and structure validation tool for configuration files",
   "main": "dist/api.js",
