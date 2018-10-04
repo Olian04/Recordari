@@ -6,7 +6,8 @@
   "types": "dist/api.d.ts",
   "directories": {
     "example": "examples",
-    "lib": "src"
+    "lib": "src",
+    "doc": "docs"
   },
   "scripts": {
     "test": "nyc --check-coverage --functions 100 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts' ",
