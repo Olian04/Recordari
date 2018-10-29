@@ -1,3 +1,8 @@
+/**
+ * Warning: Do not use this unless you know what your doing.
+ *
+ * Used internally to construct assertion tree.
+ */
 export const internal = Symbol('builder-internal');
 
 //#region These are needed in order to strictly type the tests for the builder
@@ -48,9 +53,13 @@ export interface IInternal {
 }
 
 //#region Interfaces for each builder node-type
-export interface INode { } // Used to refer to any Node
-export interface INode_Void extends INode { }
-export interface INode_Number extends INode {
+// Used to refer to any Node
+export type INode = INode_Array | INode_Base | INode_Boolean | INode_Number | INode_Object | INode_Regex | INode_String | INode_Void;
+export interface INode_Void extends _INode {
+  // Unfortunatly this needs to extend _INode, due to the fact that and empty interface is equal acording to typescript to anything
+  // This results in Void nodes exposing the [internal] field to the user. Its not the big of a deal, but its ugly.
+}
+export interface INode_Number {
   not: INode_Number;
   Whole: INode_Number;
   Natural: INode_Number;
@@ -61,17 +70,17 @@ export interface INode_Number extends INode {
   Either(values: number[]): INode_Number;
   Between(valueA: number, valueB: number): INode_Number;
 }
-export interface INode_Array extends INode {
+export interface INode_Array {
   Length: INode_Number;
   Each: INode_Base;
   Contains: INode_Base;
   Like(tuple_of_constraints: INode[]): INode_Void;
 }
-export interface INode_Boolean extends INode {
+export interface INode_Boolean {
   True: INode_Void;
   False: INode_Void;
 }
-export interface INode_String extends INode {
+export interface INode_String {
   not: INode_String;
   Length: INode_Number;
   Exact(value: string): INode_String;
@@ -80,15 +89,15 @@ export interface INode_String extends INode {
   Either(values: string[]): INode_String;
   Matches(regex: RegExp): INode_String;
 }
-export interface INode_Regex extends INode {
+export interface INode_Regex {
   Test(value: string): INode_Boolean;
 }
-export interface INode_Object extends INode {
+export interface INode_Object {
   Values: INode_Array;
   Keys: INode_Array;
   Like(obj: { [k: string]: INode }): INode_Void;
 }
-export interface INode_Base extends INode {
+export interface INode_Base {
   not: INode_Base;
   Any: INode_Void;
   Null: INode_Void;
