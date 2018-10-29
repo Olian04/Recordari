@@ -16,7 +16,7 @@ describe('api', () => {
       expect.fail();
     }
     try {
-      const test = RTest({ foo: 'i should fail' });
+      RTest({ foo: 'i should fail' });
       expect.fail();
     } catch (e) {
       expect(e).to.be.an.instanceof(TypeError);
