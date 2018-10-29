@@ -344,13 +344,13 @@ Rnot({ foo: 1 }); // FAIL
 `R.Number.Whole` is used to assert that a number is part of the whole numbers, aka `value % 1 === 0` *(including 0)*. <br>
 
 ```js
-const RNatural = Record('Natural', {
-  foo: R.Number.Natural
+const RWhole = Record('Whole', {
+  foo: R.Number.Whole
 });
 
-RNatural({ foo: 1 }); // OK
-RNatural({ foo: 1.1 }); // FAIL
-RNatural({ foo: -1 }); // FAIL
+RWhole({ foo: 1 }); // OK
+RWhole({ foo: 1.1 }); // FAIL
+RWhole({ foo: -1 }); // OK
 ```
 
 ---
@@ -369,7 +369,7 @@ RObject({ foo: 2 }); // FAIL
 ```
 
 ### Object.Values *(Array)*
-`R.Object.Values` is used to apply a constraint to value of the object.
+`R.Object.Values` is used to apply a constraint on each value of an object.
 
 ```js
 const RValues = Record('Values', {
@@ -381,7 +381,7 @@ RValues({ foo: '10' }); // FAIL
 ```
 
 ### Object.Keys *(Array)*
-`R.Object.Keys` is used to apply a constraint to value of the object.
+`R.Object.Keys` is used to apply a constraint on each key of an object.
 
 ```js
 const RKeys = Record('Keys', {
@@ -393,7 +393,8 @@ RKeys({ foo: 10, bar: '10' }); // FAIL
 ```
 
 ### Object.Like *(Array)*
-`R.Object.Like` is used to apply a constraint to value of the object.
+`R.Object.Like` is used to assert the exact shape of an object.<br>
+`R.Object.Like` takes an object of key-constraint pairs and assert each key of the value object to its corresponding key in the constraints object.
 
 ```js
 const RLike = Record('Like', {
@@ -404,6 +405,8 @@ RLike({ foo: { bar: 10 } }); // OK
 RLike({ foo: { bar: '10' } }); // FAIL
 RLike({ foo: {} }); // FAIL
 ```
+
+_Note: the object passed to `Record(str, obj)` gets passed to `R.Object.Like(obj)` behind the scenes._
 
 ---
 
