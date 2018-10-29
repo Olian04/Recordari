@@ -27,13 +27,6 @@ config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
 
-## What?
-Partly; see above
-But also TODO
-
-## Why?
-TODO
-
 # Using Recordjs
 
 Using Recordjs is divided into two steps, the `record constructions`, and the `record evaluation`. <br>
