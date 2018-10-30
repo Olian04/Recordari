@@ -1,0 +1,11 @@
+assets
+docs
+src
+tsconfig.json
+.editorconfig
+.vscode
+.github
+.circleci
+.nyc_output
+coverage
+CONTRIBUTE.md
