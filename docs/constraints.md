@@ -1,6 +1,6 @@
 # Constraints
 
-In Recordjs the way you construct Records are through the use of constraints.<br>
+In Recordari the way you construct Records are through the use of constraints.<br>
 There are many different kinds of constraints. In order to explain them without repeating myself, I've maked each one with one or more of these 6 notations.
 
 |   Notation  | Meaning                                                        |
@@ -17,7 +17,7 @@ Unless a constraint is maked with *{E}* or *{S}* it will expose the sub-set it s
 ---
 
 ## R *{S}*
-`R` is the base constraint of Recordjs, this is where all other constraints originate from. <br>
+`R` is the base constraint of Recordari, this is where all other constraints originate from. <br>
 On its own the `R` constraint doesn't provide any logic, so it will fail if used alone.
 
 ```js
@@ -176,7 +176,7 @@ RTrue({ foo: false }); // FAIL
 ## Custom *{AP}*
 > *If you find your self using this constraint often, please consider submitting an issue, explaining your usecase!*
 
-`R.Custom` is used in those cases where the constraints provided by Recordjs isn't enough. <br>
+`R.Custom` is used in those cases where the constraints provided by Recordari isn't enough. <br>
 `R.Custom` takes a synchronous function as an argument. This function should be of the signature `(value: any) => boolean`, and should return `true` if the value is considered to have passed the custom assertion logic.
 
 ```js
@@ -444,7 +444,7 @@ RRegex({ foo: ' ' }); // FAIL
 ### Regex.Test *{P}(Boolean)*
 `R.Regex.Test` is used to assert that a regex should match or not match a given string. <br>
 `R.Regex.Test` takes one string argument and tests the regex on it. <br>
-`R.Regex.Test` only executes the regex but does not assert the resulting value. You will have to explicitly tell Recordjs if the Test should evaluate to True or False.
+`R.Regex.Test` only executes the regex but does not assert the resulting value. You will have to explicitly tell Recordari if the Test should evaluate to True or False.
 
 ```js
 const RRegexTest = Record('RegexTest', {

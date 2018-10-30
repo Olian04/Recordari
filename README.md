@@ -6,7 +6,7 @@
 | Coverage  | [![codecov](https://codecov.io/gh/Olian04/Recordari/branch/master/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Recordari/branch/master)  | [![codecov](https://codecov.io/gh/Olian04/Recordari/branch/next/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Recordari/branch/next) |
 | Dependency Analysis | [![Master - Known Vulnerabilities](https://snyk.io/test/github/Olian04/Recordari/badge.svg)](https://snyk.io/test/github/Olian04/Recordari) | [![Next -  Known Vulnerabilities](https://snyk.io/test/github/Olian04/Recordari/next/badge.svg)](https://snyk.io/test/github/Olian04/Recordari/next) |
 
-> Recordjs is a type and structure validation tool for configuration files.
+> Recordari is a type and structure validation tool for configuration files.
 
 ```ts
 const { Record, R } = require('Recordari');
@@ -27,16 +27,19 @@ config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
 
-__NPM:__ `npm install recordari`
+# Install
 
-# Using Recordjs
+__Latest:__ [`npm install recordari`](https://www.npmjs.com/package/recordari) <br>
+__Next:__ [`npm install recordari@next`](https://www.npmjs.com/package/recordari/v/next)
 
-Using Recordjs is divided into two steps, the `record constructions`, and the `record evaluation`. <br>
-In the construction you will be creating a sort of "template" for Recordjs to use in the evaluation step. This "template" is what we call a `record` and will be denoted by the capital `R` preceding the variable name. Ex: `ROptions` or `RConfig`. <br>
+# Using Recordari
+
+Using Recordari is divided into two steps, the `record constructions`, and the `record evaluation`. <br>
+In the construction you will be creating a sort of "template" for Recordari to use in the evaluation step. This "template" is what we call a `record` and will be denoted by the capital `R` preceding the variable name. Ex: `ROptions` or `RConfig`. <br>
 
 ## Construction
 
-When constructing a record you will be using the `Record` function provided by Recordjs. <br>
+When constructing a record you will be using the `Record` function provided by Recordari. <br>
 This function takes two arguments, the first is the name of the record *(this can be anything you like)*, and the second is the constraint object *(this is the important part)*.
 
 ```js
@@ -58,7 +61,7 @@ const RDemo = Record('Demo', {
 });
 ```
 
-`R.Number` is a constraint that tells Recordjs that when it evaluates an object against the `Demo` record, the property `a` should be a number.
+`R.Number` is a constraint that tells Recordari that when it evaluates an object against the `Demo` record, the property `a` should be a number.
 
 *You can read about all the available constraints [here!](docs/constraints.md)*
 
