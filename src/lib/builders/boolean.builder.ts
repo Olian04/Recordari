@@ -1,4 +1,4 @@
-import { internal, NodeType, IInternal, _INode, INode_Boolean } from '../builder.interface';
+import { _INode, IInternal, INode_Boolean, internal, NodeType } from '../builder.interface';
 import { Node_Void } from './void.builder';
 
 export const Node_Boolean = (root: IInternal, self: IInternal): _INode & INode_Boolean => ({
@@ -7,7 +7,7 @@ export const Node_Boolean = (root: IInternal, self: IInternal): _INode & INode_B
     self.children.push({
       type: NodeType.False,
       data: [],
-      children: []
+      children: [],
     });
     return Node_Void(root);
   },
@@ -15,8 +15,8 @@ export const Node_Boolean = (root: IInternal, self: IInternal): _INode & INode_B
     self.children.push({
       type: NodeType.True,
       data: [],
-      children: []
+      children: [],
     });
     return Node_Void(root);
-  }
+  },
 });

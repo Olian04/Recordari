@@ -1,4 +1,4 @@
-import { internal, NodeType, IInternal, _INode, INode_String } from '../builder.interface';
+import { _INode, IInternal, INode_String, internal, NodeType } from '../builder.interface';
 import { Node_Number } from './number.builder';
 
 export const Node_String = (root: IInternal, self: IInternal): _INode & INode_String => ({
@@ -7,7 +7,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.Not,
       data: [],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },
@@ -19,9 +19,9 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
         {
           type: NodeType.Number,
           data: [],
-          children: []
-        }
-      ]
+          children: [],
+        },
+      ],
     });
     return Node_Number(root, self.children[0].children[0]);
   },
@@ -29,7 +29,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.Exact,
       data: [val],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },
@@ -37,7 +37,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.Either,
       data: [vals],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },
@@ -45,7 +45,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.StartsWith,
       data: [val],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },
@@ -53,7 +53,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.EndsWith,
       data: [val],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },
@@ -61,7 +61,7 @@ export const Node_String = (root: IInternal, self: IInternal): _INode & INode_St
     self.children.push({
       type: NodeType.Matches,
       data: [regex],
-      children: []
+      children: [],
     });
     return Node_String(root, self.children[0]);
   },

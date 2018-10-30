@@ -2,27 +2,27 @@ import { expect } from 'chai';
 import { Builder } from './builder';
 import { Evaluate } from './evaluator';
 
-import { predicates } from './evaluators/predicate.evaluators';
-import { extractions } from './evaluators/extraction.evaluators';
-import { unique } from './evaluators/unique.evaluators';
 import { NodeType } from './builder.interface';
+import { extractions } from './evaluators/extraction.evaluators';
+import { predicates } from './evaluators/predicate.evaluators';
+import { unique } from './evaluators/unique.evaluators';
 
-const assertAll = (constraint, strRepConstraint: string, valuesToTest: [any, boolean][]) => {
+const assertAll = (constraint, strRepConstraint: string, valuesToTest: Array<[any, boolean]>) => {
   valuesToTest.forEach(([v, res]) => {
     const evaluation = Evaluate(v, constraint);
     expect(evaluation, `Expected Evaluate(${v}, ${strRepConstraint}) to be ${res}`).to.deep.equal(res);
   });
-}
+};
 
 enum DontExhaust {
-  Number = "Number",
-  Array = "Array",
-  Object = "Object",
-  Boolean = "Boolean",
-  Function = "Function",
-  String = "String",
-  Regex = "Regex",
-  None = "None"
+  Number = 'Number',
+  Array = 'Array',
+  Object = 'Object',
+  Boolean = 'Boolean',
+  Function = 'Function',
+  String = 'String',
+  Regex = 'Regex',
+  None = 'None',
 }
 const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: DontExhaust, invert = false) => {
   // Since js can be a bit tricky with type coersions we need to exhaust all possible types for every assertion.
@@ -35,32 +35,32 @@ const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: Don
     [[1], dontExhaust === DontExhaust.Array],
     [[0], dontExhaust === DontExhaust.Array],
     [({}), dontExhaust === DontExhaust.Object],
-    [() => { }, dontExhaust === DontExhaust.Function],
-    ["a", dontExhaust === DontExhaust.String],
-    ["2", dontExhaust === DontExhaust.String],
-    ["", dontExhaust === DontExhaust.String],
-    ["123", dontExhaust === DontExhaust.String],
-    ["abc", dontExhaust === DontExhaust.String],
-    [/ /, dontExhaust === DontExhaust.Regex]
-  ].map(([v, b]) => [v, invert ? !b : b]) as [any, boolean][])
+    [() => {/* This needs to be empty */}, dontExhaust === DontExhaust.Function],
+    ['a', dontExhaust === DontExhaust.String],
+    ['2', dontExhaust === DontExhaust.String],
+    ['', dontExhaust === DontExhaust.String],
+    ['123', dontExhaust === DontExhaust.String],
+    ['abc', dontExhaust === DontExhaust.String],
+    [/ /, dontExhaust === DontExhaust.Regex],
+  ].map(([v, b]) => [v, invert ? !b : b]) as Array<[any, boolean]>),
   );
-}
+};
 
 const test = (k: string, cb: () => void) => {
   describe(k, () => {
     it(k, () => exhaustBaseCases(Builder[k], k, DontExhaust[k]));
     cb();
   });
-}
+};
 
 describe('Evaluator', () => {
   it('All NodeTypes have evaluators', () => {
-    Object.keys(NodeType).forEach(k =>
+    Object.keys(NodeType).forEach((k) =>
       expect(
         k in predicates ||
         k in extractions ||
         k in unique,
-        `Evaluator missing for NodeType.${k}`).to.be.true
+        `Evaluator missing for NodeType.${k}`).to.be.true,
       );
   });
   test('Object', () => {
@@ -95,13 +95,13 @@ describe('Evaluator', () => {
     it('True', () => {
       assertAll(Builder.Boolean.True, 'Boolean.True', [
         [true, true],
-        [false, false]
+        [false, false],
       ]);
     });
     it('False', () => {
       assertAll(Builder.Boolean.False, 'Boolean.False', [
         [false, true],
-        [true, false]
+        [true, false],
       ]);
     });
   });
@@ -147,7 +147,7 @@ describe('Evaluator', () => {
         [0b10, true], // Binary 2
         [0b1, false], // Binary 1
         [0o2, true], // Octal 2
-        [0o1, false] // Octal 1
+        [0o1, false], // Octal 1
       ]);
     });
     it('Min', () => {
@@ -160,7 +160,7 @@ describe('Evaluator', () => {
         [0b1, false], // Binary 1
         [0o3, true], // Octal 3
         [0o2, true], // Octal 2
-        [0o1, false] // Octal 1
+        [0o1, false], // Octal 1
       ]);
     });
     it('Natural', () => {
@@ -169,7 +169,7 @@ describe('Evaluator', () => {
         [-0.5, false],
         [0, true],
         [0.5, true],
-        [1, true]
+        [1, true],
       ]);
     });
     it('Whole', () => {
@@ -178,7 +178,7 @@ describe('Evaluator', () => {
         [-0.5, false],
         [0, true],
         [0.5, false],
-        [1, true]
+        [1, true],
       ]);
     });
     it('Either', () => {
@@ -189,7 +189,7 @@ describe('Evaluator', () => {
         [0.5, false],
         [1, true],
         [1.5, false],
-        [2, true]
+        [2, true],
       ]);
     });
     it('Mod', () => {
@@ -200,7 +200,7 @@ describe('Evaluator', () => {
         [0, false],
         [0.5, false],
         [1, true],
-        [2, false]
+        [2, false],
       ]);
     });
     it('Max', () => {
@@ -213,11 +213,11 @@ describe('Evaluator', () => {
         [0b1, true], // Binary 1
         [0o3, false], // Octal 3
         [0o2, true], // Octal 2
-        [0o1, true] // Octal 1
+        [0o1, true], // Octal 1
       ]);
     });
     it('Between', () => {
-      assertAll(Builder.Number.Between(1,2), 'Number.Number.Between(1,2)', [
+      assertAll(Builder.Number.Between(1, 2), 'Number.Number.Between(1,2)', [
         [0, false],
         [1, true],
         [2, true],
@@ -227,7 +227,7 @@ describe('Evaluator', () => {
         [0b1, true], // Binary 1
         [0o3, false], // Octal 3
         [0o2, true], // Octal 2
-        [0o1, true] // Octal 1
+        [0o1, true], // Octal 1
       ]);
     });
     it('not', () => {
@@ -239,7 +239,7 @@ describe('Evaluator', () => {
         [0b1, true], // Binary 1
         [0o3, true], // Octal 3
         [0o2, false], // Octal 2
-        [0o1, true] // Octal 1
+        [0o1, true], // Octal 1
       ]);
     });
   });
@@ -248,55 +248,58 @@ describe('Evaluator', () => {
       assertAll(Builder.Array.Each, 'Builder.Array.Each', [
         [[], true],
         [[1, '2', [3]], true],
-        [undefined, false]
+        [undefined, false],
       ]);
       assertAll(Builder.Array.Each.Number, 'Builder.Array.Each.Number', [
         [[], true],
         [[1, 2, 3], true],
-        [[1, '2', 3], false]
+        [[1, '2', 3], false],
       ]);
     });
     it('Contains', () => {
       assertAll(Builder.Array.Contains, 'Builder.Array.Contains', [
         [[], true],
         [[1, '2', [3]], true],
-        [undefined, false]
+        [undefined, false],
       ]);
       assertAll(Builder.Array.Contains.Number, 'Builder.Array.Contains.Number', [
         [[1, 2, 3], true],
         [[], false],
         [['1', '2', '3'], false],
         [['1', 2, '3'], true],
-        [undefined, false]
+        [undefined, false],
       ]);
     });
     it('Length', () => {
       assertAll(Builder.Array.Length, 'Builder.Array.Length', [
         [[], true],
         [[1, '2', [3]], true],
-        [undefined, false]
+        [undefined, false],
       ]);
       assertAll(Builder.Array.Length.Exact(3), 'Builder.Array.Length.Exact(3)', [
         [[1, 2, 3], true],
         [['1', '2', '3'], true],
         [['1', 2, '3'], true],
         [[], false],
-        [undefined, false]
+        [undefined, false],
       ]);
     });
     it('Like', () => {
       assertAll(Builder.Array.Like([]), 'Array.Like([])', [
         [[], true],
-        [[1], false]
+        [[1], false],
       ]);
       assertAll(Builder.Array.Like([Builder]), 'Array.Like([ Builder ])', [
         [[1], true],
         [['1'], true],
         [[], false],
         [[1, 2], false],
-        [undefined, false]
+        [undefined, false],
       ]);
-      assertAll(Builder.Array.Like([Builder.Number.Exact(2), Builder]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
+      assertAll(Builder.Array.Like([
+        Builder.Number.Exact(2),
+        Builder,
+      ]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
         [[2, 1], true],
         [[2, 1, 3], false],
         [[2, '1'], true],
@@ -304,15 +307,18 @@ describe('Evaluator', () => {
         [[], false],
         [[1, 2], false],
         [[1, 2, 3], false],
-        [undefined, false]
+        [undefined, false],
       ]);
-      assertAll(Builder.Array.Like([Builder.Number.Exact(1), Builder.Number.Exact(2)]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
+      assertAll(Builder.Array.Like([
+        Builder.Number.Exact(1),
+        Builder.Number.Exact(2),
+      ]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
         [[1, 2], true],
         [[1, 3], false],
         [[0, 2], false],
         [['1', 2], false],
         [[1, 2, 3], false],
-        [[1], false]
+        [[1], false],
       ]);
     });
   });
@@ -322,16 +328,16 @@ describe('Evaluator', () => {
       [[], true],
       [[1, 2, 3], true],
       [[1], true],
-      [undefined, false]
+      [undefined, false],
     ]);
     assertAll(Builder.Array.Each.and([
       Builder.Number.Max(5),
-      Builder.Number.Min(2)
+      Builder.Number.Min(2),
     ]), 'Array.Each.and([ Builder.Number.Max(5), Builder.Number.Min(2) ])', [
         [[2, 5], true],
         [[1, 5], false],
         [[2, 6], false],
-        [[1, 6], false]
+        [[1, 6], false],
       ]);
   });
   it('Or', () => {
@@ -340,11 +346,11 @@ describe('Evaluator', () => {
       [[], true],
       [[1, 2, 3], true],
       [[1], true],
-      [undefined, false]
+      [undefined, false],
     ]);
     assertAll(Builder.Array.Each.or([
       Builder.Number,
-      Builder.Array
+      Builder.Array,
     ]), 'Array.Each.or([ Builder.Number, Builder.Array ])', [
         [[2, [5]], true],
         [[[5]], true],
@@ -357,8 +363,8 @@ describe('Evaluator', () => {
     exhaustBaseCases(Builder.not.Number, 'not.Number', DontExhaust.Number, true);
     assertAll(Builder.Array.Each.not.Number, 'Array.Each.not.Number', [
       [['1', [2], false], true],
-      [['1', 2, true], false]
-    ])
+      [['1', 2, true], false],
+    ]);
   });
   it('Any', () => {
     exhaustBaseCases(Builder.Any, 'Any', DontExhaust.None, true);
@@ -368,18 +374,18 @@ describe('Evaluator', () => {
     exhaustBaseCases(Builder.Undefined, 'Undefined', DontExhaust.None);
     assertAll(Builder.Undefined, 'Undefined', [
       [undefined, true],
-      [null, false]
+      [null, false],
     ]);
   });
   it('Null', () => {
     exhaustBaseCases(Builder.Null, 'Null', DontExhaust.None);
     assertAll(Builder.Null, 'Null', [
       [null, true],
-      [undefined, false]
+      [undefined, false],
     ]);
   });
   it('Custom', () => {
-    assertAll(Builder.Custom(v => v === 0), 'Custom(v => v === 0)', [
+    assertAll(Builder.Custom((v) => v === 0), 'Custom(v => v === 0)', [
       [0, true],
       [0.1, false],
       ['0', false],
@@ -388,15 +394,15 @@ describe('Evaluator', () => {
       [null, false],
       [true, false],
       [false, false],
-      [1, false]
-    ])
+      [1, false],
+    ]);
   });
   test('String', () => {
     it('Exact', () => {
       assertAll(Builder.String.Exact('hello'), 'String.Exact("hello")', [
         ['hello', true],
         ['bye', false],
-        ['', false]
+        ['', false],
       ]);
     });
     it('Not', () => {
@@ -405,14 +411,14 @@ describe('Evaluator', () => {
         ['hell', true],
         ['helloj', true],
         ['bye', true],
-        ['', true]
+        ['', true],
       ]);
     });
     it('Length', () => {
       assertAll(Builder.String.Length.Exact(2), 'String.Length.Exact(2)', [
         ['hi', true],
         ['bye', false],
-        ['', false]
+        ['', false],
       ]);
     });
     it('Either', () => {

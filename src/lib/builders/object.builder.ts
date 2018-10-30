@@ -1,4 +1,4 @@
-import { internal, NodeType, IInternal, _INode, INode_Object } from '../builder.interface';
+import { _INode, IInternal, INode_Object, internal, NodeType } from '../builder.interface';
 import { Node_Array } from './array.builder';
 import { Node_Void } from './void.builder';
 
@@ -8,7 +8,7 @@ export const Node_Object = (root: IInternal, self: IInternal): _INode & INode_Ob
     self.children.push({
       type: NodeType.Values,
       data: [],
-      children: []
+      children: [],
     });
     return Node_Array(root, self.children[0]);
   },
@@ -16,7 +16,7 @@ export const Node_Object = (root: IInternal, self: IInternal): _INode & INode_Ob
     self.children.push({
       type: NodeType.Keys,
       data: [],
-      children: []
+      children: [],
     });
     return Node_Array(root, self.children[0]);
   },
@@ -24,8 +24,8 @@ export const Node_Object = (root: IInternal, self: IInternal): _INode & INode_Ob
     self.children.push({
       type: NodeType.LikeObject,
       data: [obj],
-      children: []
+      children: [],
     });
     return Node_Void(root);
-  }
+  },
 });

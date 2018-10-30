@@ -33,8 +33,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
+      # Run tests!
       - run: npm run test
+
+      # Run linter!
+      - run: npm run lint:nofix
 
       - run: npm run coverage
 

@@ -6,12 +6,12 @@
 export const internal = Symbol('builder-internal');
 
 //#region These are needed in order to strictly type the tests for the builder
-export type _INode = {
+export interface _INode {
   [internal]: IInternal;
 }
 export const hasInternal = (node: object): node is _INode => {
   return internal in node;
-}
+};
 //#endregion
 
 export enum NodeType {
@@ -54,9 +54,14 @@ export interface IInternal {
 
 //#region Interfaces for each builder node-type
 // Used to refer to any Node
-export type INode = INode_Array | INode_Base | INode_Boolean | INode_Number | INode_Object | INode_Regex | INode_String | INode_Void;
+export type INode =
+  INode_Array | INode_Base | INode_Boolean |
+  INode_Number | INode_Object | INode_Regex |
+  INode_String | INode_Void;
+
 export interface INode_Void extends _INode {
-  // Unfortunatly this needs to extend _INode, due to the fact that and empty interface is equal acording to typescript to anything
+  // Unfortunatly this needs to extend _INode
+  // due to the fact that and empty interface is equal acording to typescript to anything
   // This results in Void nodes exposing the [internal] field to the user. Its not the big of a deal, but its ugly.
 }
 export interface INode_Number {
@@ -74,7 +79,7 @@ export interface INode_Array {
   Length: INode_Number;
   Each: INode_Base;
   Contains: INode_Base;
-  Like(tuple_of_constraints: INode[]): INode_Void;
+  Like(tupleOfConstraints: INode[]): INode_Void;
 }
 export interface INode_Boolean {
   True: INode_Void;

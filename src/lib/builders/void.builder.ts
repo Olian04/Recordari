@@ -1,5 +1,5 @@
-import { internal, IInternal, INode_Void } from '../builder.interface';
+import { IInternal, INode_Void, internal } from '../builder.interface';
 
-export const Node_Void= (root: IInternal): INode_Void => ({
-  [internal]: root
+export const Node_Void = (root: IInternal): INode_Void => ({
+  [internal]: root,
 });

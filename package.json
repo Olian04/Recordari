@@ -13,7 +13,9 @@
     "test": "nyc --check-coverage --functions 100 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts' ",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov --token=f3e31ed4-f58a-4b46-8a5e-a3f2b394f927",
     "build": "tsc",
-    "prepare": "npm run build"
+    "lint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "lint:nofix": "tslint -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "nyc": {
     "exclude": [
@@ -47,11 +49,12 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.11.4",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.1.1",
     "codecov": "^3.1.0",
-    "nyc": "^13.0.1"
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.1"
   },
   "dependencies": {}
 }
