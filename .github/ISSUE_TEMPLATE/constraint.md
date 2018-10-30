@@ -14,7 +14,7 @@ __I'm requesting a:__
 - [ ] New Constraint
 
 ## What?
-<!-- Please explain with word what changes you are suggesting -->
+<!-- Please explain with words what changes you are suggesting -->
 
 __Code:__ <br>
 <!-- Please change the following code snipped to reflect your intended changes, be sure to show how and when the constraint would evaluate to true and when it would evaluate to false -->
