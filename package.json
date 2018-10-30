@@ -1,7 +1,7 @@
 {
-  "name": "record.js",
-  "version": "1.0.0",
-  "description": "Record.js is a type and structure validation tool for configuration files",
+  "name": "recordari",
+  "version": "1.0.2",
+  "description": "Recordari is a type and structure validation tool for configuration files",
   "main": "dist/api.js",
   "types": "dist/api.d.ts",
   "directories": {
@@ -12,7 +12,8 @@
   "scripts": {
     "test": "nyc --check-coverage --functions 100 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts' ",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov --token=f3e31ed4-f58a-4b46-8a5e-a3f2b394f927",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "nyc": {
     "exclude": [
@@ -21,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Olian04/Record.js.git"
+    "url": "git+https://github.com/Olian04/Recordari.git"
   },
   "author": "olian04",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Olian04/Record.js/issues"
+    "url": "https://github.com/Olian04/Recordari/issues"
   },
-  "homepage": "https://github.com/Olian04/Record.js#readme",
+  "homepage": "https://github.com/Olian04/Recordari#readme",
   "keywords": [
     "json",
     "validation",

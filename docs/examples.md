@@ -3,7 +3,7 @@
 ## Demo - 1
 
 ```ts
-const { Record, R } = require('Record.js');
+const { Record, R } = require('Recordari');
 
 const RSettings = Record('Settings', {
   foo: R.Number.Natural,
@@ -34,7 +34,7 @@ const failRecord = RSettings({
   bar: ['c'], //                    Error: Settings.bar[0] => 'c' is not in ['a', 'b']
   biz: { baz: 1.654, boo: 'd' }, // Error: Settings.biz => Unexpected key 'boo'.
   baz: 'hello', //                  Error: Settings.baz => 'hello'.length is not, less than 3, nor greater than 9
-  hello: 'Record.js', //             Error: Settings => Unexpected key 'hello'.
+  hello: 'hi', //             Error: Settings => Unexpected key 'hello'.
   bez: /^\d+\.\d+\.\d+$/ //         Error: Settings.bez => '0.0.0'.match should be false
 });
 ```

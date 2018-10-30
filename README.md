@@ -1,15 +1,15 @@
-![logo](assets/logo.png)
+![logo](./assets/logo.png)
 
 |         |  Master           | Next  |
 |:------------:|:-----------------:|:------:|
-| Tests             | [![CI - Master](https://circleci.com/gh/Olian04/Record.js/tree/master.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/master) |[![CI - Next](https://circleci.com/gh/Olian04/Record.js/tree/next.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Record.js/tree/next) |
-| Coverage  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/master/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js/branch/master)  | [![codecov](https://codecov.io/gh/Olian04/Record.js/branch/next/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Record.js/branch/next) |
-| Dependency Analysis | [![Master - Known Vulnerabilities](https://snyk.io/test/github/Olian04/Record.js/badge.svg)](https://snyk.io/test/github/Olian04/Record.js) | [![Next -  Known Vulnerabilities](https://snyk.io/test/github/Olian04/Record.js/next/badge.svg)](https://snyk.io/test/github/Olian04/Record.js/next) |
+| Tests             | [![CI - Master](https://circleci.com/gh/Olian04/Recordari/tree/master.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Recordari/tree/master) |[![CI - Next](https://circleci.com/gh/Olian04/Recordari/tree/next.svg?style=svg&circle-token=7dc7a0d0d63d7e8f42cdad6cc08f102a144f72a0)](https://circleci.com/gh/Olian04/Recordari/tree/next) |
+| Coverage  | [![codecov](https://codecov.io/gh/Olian04/Recordari/branch/master/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Recordari/branch/master)  | [![codecov](https://codecov.io/gh/Olian04/Recordari/branch/next/graph/badge.svg?token=S2jhTAlWAh)](https://codecov.io/gh/Olian04/Recordari/branch/next) |
+| Dependency Analysis | [![Master - Known Vulnerabilities](https://snyk.io/test/github/Olian04/Recordari/badge.svg)](https://snyk.io/test/github/Olian04/Recordari) | [![Next -  Known Vulnerabilities](https://snyk.io/test/github/Olian04/Recordari/next/badge.svg)](https://snyk.io/test/github/Olian04/Recordari/next) |
 
 > Recordjs is a type and structure validation tool for configuration files.
 
 ```ts
-const { Record, R } = require('record.js');
+const { Record, R } = require('Recordari');
 
 // 1) Create a Record of how the configurations should look
 const RConfig = Record('MyConfig', {
@@ -27,6 +27,8 @@ config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
 
+__NPM:__ `npm install recordari`
+
 # Using Recordjs
 
 Using Recordjs is divided into two steps, the `record constructions`, and the `record evaluation`. <br>
@@ -38,7 +40,7 @@ When constructing a record you will be using the `Record` function provided by R
 This function takes two arguments, the first is the name of the record *(this can be anything you like)*, and the second is the constraint object *(this is the important part)*.
 
 ```js
-const { Record } = require('Record.js');
+const { Record } = require('Recordari');
 const RDemo = Record('Demo', {
   // This is the constraint object
 });
@@ -50,7 +52,7 @@ And lets assume that the application expects the property `a` to always be a num
 We could then construct a constraint for the property `a` that asserts the type of the value to be a number, like this: `R.Number` <br>
 
 ```js
-const { R, Record } = require('Record.js');
+const { R, Record } = require('Recordari');
 const RDemo = Record('Demo', {
   a: R.Number
 });
@@ -65,7 +67,7 @@ const RDemo = Record('Demo', {
 After you've constructed a record you can now use it to assert the validity of objects.
 
 ```js
-const { R, Record } = require('Record.js');
+const { R, Record } = require('Recordari');
 const RDemo = Record('Demo', {
   a: R.Number
 });
@@ -79,7 +81,7 @@ If the argument does comply to the constraints, then function will act like the 
 If the argument does not comply to the constraints then the function will throw a TypeError. <br>
 
 ```js
-const { R, Record } = require('Record.js');
+const { R, Record } = require('Recordari');
 const RDemo = Record('Demo', {
   a: R.Number
 });

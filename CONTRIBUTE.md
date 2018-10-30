@@ -1,3 +1,3 @@
-# How to contribute to Record.js
+# How to contribute to Recordari
 
 <!-- TODO -->
