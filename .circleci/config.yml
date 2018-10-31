@@ -37,20 +37,7 @@ jobs:
       - run: npm run lint:nofix
 
       # Run tests!
-      - run: mkdir ~/junit
-      - run:
-          command: npm run test
-          environment:
-            MOCHA_FILE: junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ~/junit
+      - run: npm run test
 
-      # Upload coverage report
+      # Uplead coverage report
       - run: npm run coverage
-
-
-
-
