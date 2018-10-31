@@ -106,3 +106,23 @@ A great way to explore the available constraints is through intellisense explora
 # Examples
 
 *See [docs/examples.md](docs/examples.md)*
+
+# Typescript interop
+
+Most of Recordari is already typed out of the box.<br>
+However unfortunately typescript types needs to exists prior to compilation so we can't dynamically type an object as it goes through a Recordari record. This means that you will have to trust in Recordari to do all necessary type checks, and then override typescript by explicitly casting the resulting record to the corresponding typescript type.
+
+```ts
+  const RDemo = Record('Demo', {
+    foo: R.Number.Natural,
+    bar: R.Array.Each.String.Either(['a', 'b']),
+  });
+  interface IDemo {
+    foo: number;
+    bar: 'a' | 'b';
+  }
+  const demo = RDemo({
+    foo: 1,
+    bar: 'a',
+  }) as IDemo;
+```

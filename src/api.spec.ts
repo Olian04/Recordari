@@ -69,4 +69,22 @@ describe('api', () => {
       }
     });
   });
+  describe('Typescript interface interop', () => {
+    it('RDemo(name, obj) as IDemo', () => {
+      const RDemo = Record('Demo', {
+        foo: R.Number.Natural,
+        bar: R.Array.Each.String.Either(['a', 'b']),
+      });
+      interface IDemo {
+        foo: number;
+        bar: 'a' | 'b';
+      }
+      const demo = RDemo({
+        foo: 1,
+        bar: 'a',
+      }) as IDemo;
+      demo.bar; // Ts should not complain
+      demo.foo; // Ts should not complain
+    });
+  });
 });
