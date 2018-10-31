@@ -1,7 +1,7 @@
 # Constraints
 
 In Recordari the way you construct Records are through the use of constraints.<br>
-There are many different kinds of constraints. In order to explain them without repeating myself, I've maked each one with one or more of these 6 notations.
+There are many different kinds of constraints. In order to explain them without repeating myself, I've marked each one with one or more of these 6 notations.
 
 |   Notation  | Meaning                                                        |
 |:-----------:|:--------------------------------------------------------------:|
