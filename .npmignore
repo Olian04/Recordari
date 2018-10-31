@@ -6,5 +6,7 @@ tsconfig.json
 .github
 .circleci
 .nyc_output
+tslint.json
 coverage
 CONTRIBUTE.md
+demo
