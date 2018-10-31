@@ -42,4 +42,8 @@ jobs:
       # Uplead coverage report
       - run: npm run coverage
 
+      - store_test_results:
+          path: coverage
+
+
 
