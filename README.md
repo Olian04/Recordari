@@ -126,5 +126,3 @@ However unfortunately typescript types needs to exists prior to compilation so w
     bar: 'a',
   }) as IDemo;
 ```
-
-.
