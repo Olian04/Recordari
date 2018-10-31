@@ -1,43 +1,60 @@
 {
-  "name": "record",
-  "version": "0.1.0",
-  "description": "Record.js is a type and structure validation tool for configuration files",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "recordari",
+  "version": "1.2.2",
+  "description": "Recordari is a type and structure validation tool for configuration files",
+  "main": "dist/api.js",
+  "types": "dist/api.d.ts",
   "directories": {
     "example": "examples",
     "lib": "src",
     "doc": "docs"
   },
   "scripts": {
-    "watch": "tsc -w",
-    "test": "nyc mocha --recursive -r ts-node/register src/**/*.spec.ts",
+    "test": "nyc --check-coverage --functions 100 --reporter=lcov --reporter=text-summary --extension .ts mocha --recursive -r ts-node/register 'src/**/*.spec.ts' ",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov --token=f3e31ed4-f58a-4b46-8a5e-a3f2b394f927",
     "build": "tsc",
-    "doc": "typedoc --mode file --out docs/ src/index.ts"
+    "lint": "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "lint:nofix": "tslint -c ./tslint.json 'src/**/*{.ts,.tsx}'",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.ts"
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Olian04/Record.js.git"
+    "url": "git+https://github.com/Olian04/Recordari.git"
   },
   "author": "olian04",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Olian04/Record.js/issues"
+    "url": "https://github.com/Olian04/Recordari/issues"
   },
-  "homepage": "https://github.com/Olian04/Record.js#readme",
+  "homepage": "https://github.com/Olian04/Recordari#readme",
   "keywords": [
-    "json"
+    "json",
+    "validation",
+    "options",
+    "config",
+    "rc",
+    "assert",
+    "test",
+    "testing",
+    "constraints",
+    "constraint"
   ],
   "devDependencies": {
-    "@types/chai": "^4.1.4",
+    "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.9.3",
-    "chai": "^4.1.2",
+    "@types/node": "^10.12.1",
+    "chai": "^4.2.0",
+    "codecov": "^3.1.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "ts-node": "^7.0.1",
-    "typedoc": "^0.12.0",
-    "typescript": "^3.0.1",
-    "nyc": "^13.0.1"
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.4"
   },
   "dependencies": {}
 }
