@@ -73,7 +73,7 @@ describe('api', () => {
     it('RDemo(name, obj) as IDemo', () => {
       const RDemo = Record('Demo', {
         foo: R.Number.Natural,
-        bar: R.Array.Each.String.Either(['a', 'b']),
+        bar: R.String.Either(['a', 'b']),
       });
       interface IDemo {
         foo: number;

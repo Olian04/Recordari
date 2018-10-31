@@ -115,7 +115,7 @@ However unfortunately typescript types needs to exists prior to compilation so w
 ```ts
   const RDemo = Record('Demo', {
     foo: R.Number.Natural,
-    bar: R.Array.Each.String.Either(['a', 'b']),
+    bar: R.String.Either(['a', 'b']),
   });
   interface IDemo {
     foo: number;
