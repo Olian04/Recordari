@@ -35,7 +35,7 @@ const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: Don
     [[1], dontExhaust === DontExhaust.Array],
     [[0], dontExhaust === DontExhaust.Array],
     [({}), dontExhaust === DontExhaust.Object],
-    [() => {/* This needs to be empty */}, dontExhaust === DontExhaust.Function],
+    [() => {/* */}, dontExhaust === DontExhaust.Function],
     ['a', dontExhaust === DontExhaust.String],
     ['2', dontExhaust === DontExhaust.String],
     ['', dontExhaust === DontExhaust.String],
