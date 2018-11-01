@@ -1,4 +1,4 @@
-import { _INode, IInternal, INode_Array, internal, NodeType } from '../builder.interface';
+import { _INode, hasInternal, IInternal, INode_Array, internal, NodeType } from '../builder.interface';
 import { Node_Base } from './base.builder';
 import { Node_Number } from './number.builder';
 import { Node_Void } from './void.builder';
@@ -39,7 +39,10 @@ export const Node_Array = (root: IInternal, self: IInternal): _INode & INode_Arr
     self.children.push({
       type: NodeType.LikeArray,
       data: [],
-      children: Rs.map((r) => r[internal]),
+      children: Rs.map((r) => {
+        if (!hasInternal(r)) { throw new Error('Array.Like expects an array of Constraints'); }
+        return r[internal];
+      }),
     });
     return Node_Void(root);
   },

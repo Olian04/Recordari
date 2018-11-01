@@ -12,13 +12,13 @@
       "class-name": false,
       "interface-name": false,
       "no-empty-interface": false,
-      "variable-name":
-        [true,
+      "variable-name": [ true,
         "allow-leading-underscore",
         "allow-pascal-case",
         "allow-snake-case",
         "ban-keywords"
-      ]
+      ],
+      "no-console": false
     },
     "rulesDirectory": []
 }

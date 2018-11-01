@@ -1,9 +1,9 @@
-import { IInternal, INode, internal } from './builder.interface';
+import { hasInternal, IInternal, INode, internal } from './builder.interface';
 import { extractions } from './evaluators/extraction.evaluators';
 import { predicates } from './evaluators/predicate.evaluators';
 import { unique } from './evaluators/unique.evaluators';
 
-export const Evaluate = (value, root: INode): boolean => {
+export const Evaluate = (value: any, root: INode): boolean => {
   const internalEval: (val: any, internal: IInternal) => boolean = (val, {type, data, children}) => {
     if (type in predicates) {
       // Predicate
@@ -22,5 +22,9 @@ export const Evaluate = (value, root: INode): boolean => {
     /* istanbul ignore next */
     throw new Error('Unexpected node type: ' + type);
   };
+
+  if (!hasInternal(root)) { throw new Error(
+    'Unexpected internal error! Attempted to evaluate root object with missing [internal] field',
+  ); }
   return internalEval(value, root[internal]);
 };

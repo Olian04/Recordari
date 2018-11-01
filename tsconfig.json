@@ -4,7 +4,9 @@
         "target": "es2018",
         "sourceMap": true,
         "outDir": "dist/",
-        "declaration": true
+        "declaration": true,
+        "strict": true,
+        "alwaysStrict": true
     },
     "include": [
         "src/**/*.ts"

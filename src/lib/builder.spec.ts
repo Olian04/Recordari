@@ -1,13 +1,13 @@
 import { assert, expect } from 'chai';
 import { Builder } from './builder';
-import { hasInternal, IInternal, internal, NodeType } from './builder.interface';
+import { hasInternal, IInternal, INode, internal, NodeType } from './builder.interface';
 
 const child = (node: IInternal, depth: number): IInternal =>
   depth === 0 ? node : child(node.children[0], depth - 1);
 const assertChild = (node: IInternal, childDepth: number, type: NodeType) =>
   expect(child(node, childDepth).type).to.equal(type);
 
-const test = (name: string, constraint, cb: (internal: IInternal) => void) => {
+const test = (name: string, constraint: INode, cb: (internal: IInternal) => void) => {
   it(name, () => {
     if (hasInternal(constraint)) {
       assertChild(constraint[internal], 0, NodeType.Base);

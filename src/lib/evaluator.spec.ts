@@ -2,15 +2,19 @@ import { expect } from 'chai';
 import { Builder } from './builder';
 import { Evaluate } from './evaluator';
 
-import { NodeType } from './builder.interface';
+import { INode, NodeType } from './builder.interface';
 import { extractions } from './evaluators/extraction.evaluators';
 import { predicates } from './evaluators/predicate.evaluators';
 import { unique } from './evaluators/unique.evaluators';
 
-const assertAll = (constraint, strRepConstraint: string, valuesToTest: Array<[any, boolean]>) => {
+const assertAll = (constraint: INode, strRepConstraint: string, valuesToTest: Array<[any, boolean]>) => {
   valuesToTest.forEach(([v, res]) => {
-    const evaluation = Evaluate(v, constraint);
-    expect(evaluation, `Expected Evaluate(${v}, ${strRepConstraint}) to be ${res}`).to.deep.equal(res);
+    try {
+      const evaluation = Evaluate(v, constraint);
+      expect(evaluation, `Expected Evaluate(${v}, ${strRepConstraint}) to be ${res}`).to.equal(res);
+    } catch (e) {
+      expect(false).to.equal(res);
+    }
   });
 };
 
@@ -24,7 +28,7 @@ enum DontExhaust {
   Regex = 'Regex',
   None = 'None',
 }
-const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: DontExhaust, invert = false) => {
+const exhaustBaseCases = (constraint: INode, strRepConstraint: string, dontExhaust: DontExhaust, invert = false) => {
   // Since js can be a bit tricky with type coersions we need to exhaust all possible types for every assertion.
   assertAll(constraint, strRepConstraint, ([
     [1, dontExhaust === DontExhaust.Number],
@@ -48,7 +52,10 @@ const exhaustBaseCases = (constraint, strRepConstraint: string, dontExhaust: Don
 
 const test = (k: string, cb: () => void) => {
   describe(k, () => {
-    it(k, () => exhaustBaseCases(Builder[k], k, DontExhaust[k]));
+    it(k, () => {
+      // @ts-ignore
+      return exhaustBaseCases(Builder[k], k, DontExhaust[k]);
+    });
     cb();
   });
 };
@@ -289,17 +296,16 @@ describe('Evaluator', () => {
         [[], true],
         [[1], false],
       ]);
-      assertAll(Builder.Array.Like([Builder]), 'Array.Like([ Builder ])', [
+      assertAll(Builder.Array.Like([Builder.Any]), 'Array.Like([ Builder.Any ])', [
         [[1], true],
         [['1'], true],
         [[], false],
         [[1, 2], false],
-        [undefined, false],
       ]);
       assertAll(Builder.Array.Like([
         Builder.Number.Exact(2),
-        Builder,
-      ]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
+        Builder.Any,
+      ]), 'Array.Like([ Builder.Number.Exact(2), Builder.Any ])', [
         [[2, 1], true],
         [[2, 1, 3], false],
         [[2, '1'], true],
@@ -307,12 +313,11 @@ describe('Evaluator', () => {
         [[], false],
         [[1, 2], false],
         [[1, 2, 3], false],
-        [undefined, false],
       ]);
       assertAll(Builder.Array.Like([
         Builder.Number.Exact(1),
         Builder.Number.Exact(2),
-      ]), 'Array.Like([ Builder.Number.Exact(2), Builder ])', [
+      ]), 'Array.Like([ Builder.Number.Exact(2), Builder.Number.Exact(2) ])', [
         [[1, 2], true],
         [[1, 3], false],
         [[0, 2], false],

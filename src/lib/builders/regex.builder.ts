@@ -6,7 +6,7 @@ export const Node_Regex = (root: IInternal, self: IInternal): _INode & INode_Reg
   Test(val: string) {
     self.children.push({
       type: NodeType.Run,
-      data: [(regex) => regex.test(val)],
+      data: [(regex: RegExp) => regex.test(val)],
       children: [{
         type: NodeType.Boolean,
         data: [],

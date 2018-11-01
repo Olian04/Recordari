@@ -1,7 +1,7 @@
 import { NodeType } from '../builder.interface';
 
 export const predicates: {
-  [k: string]: (v: any, args?: any[]) => boolean;
+  [k: string]: (v: any, args: any[]) => boolean;
 } = {
   [NodeType.Custom]: (v, [predicate]) => predicate(v), // The goal is to not need this
   [NodeType.Base]: () => true,
@@ -15,7 +15,7 @@ export const predicates: {
   [NodeType.True]: (v) => v === true,
   [NodeType.False]: (v) => v === false,
   [NodeType.Modulo]: (v, [m, r]) => Math.abs(v) % m === r,
-  [NodeType.Either]: (v, [arr]) => arr.find((a) => a === v) !== undefined,
+  [NodeType.Either]: (v, [arr]) => arr.find((a: any) => a === v) !== undefined,
   [NodeType.String]: (v) => typeof v === 'string',
   [NodeType.StartsWith]: (v, [a]) => v.startsWith(a),
   [NodeType.EndsWith]: (v, [a]) => v.endsWith(a),
@@ -23,8 +23,8 @@ export const predicates: {
   [NodeType.Regex]: (v) => v instanceof RegExp,
   [NodeType.Object]: (v) =>
     typeof v === 'object' &&
-    !predicates[NodeType.Array](v) &&
-    !predicates[NodeType.Regex](v) &&
+    !predicates[NodeType.Array](v, []) &&
+    !predicates[NodeType.Regex](v, []) &&
     v !== undefined &&
     v !== null,
 };

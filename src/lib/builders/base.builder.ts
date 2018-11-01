@@ -1,4 +1,4 @@
-import { _INode, IInternal, INode_Base, internal, NodeType } from '../builder.interface';
+import { _INode, hasInternal, IInternal, INode_Base, internal, NodeType } from '../builder.interface';
 import { Node_Array } from './array.builder';
 import { Node_Boolean } from './boolean.builder';
 import { Node_Number } from './number.builder';
@@ -58,20 +58,24 @@ export const Node_Base = (root: IInternal, self: IInternal): _INode & INode_Base
     return Node_String(root, self.children[0]);
   },
   and(Rs) {
-    // TODO: Add tests to make sure the Rs are all INodes
     self.children.push({
       type: NodeType.And,
       data: [],
-      children: Rs.map((r) => r[internal]),
+      children: Rs.map((r) => {
+        if (!hasInternal(r)) { throw new Error('Base.and expects an array of Constraints'); }
+        return r[internal];
+      }),
     });
     return Node_Void(root);
   },
   or(Rs) {
-    // TODO: Add tests to make sure the Rs are all INodes
     self.children.push({
       type: NodeType.Or,
       data: [],
-      children: Rs.map((r) => r[internal]),
+      children: Rs.map((r) => {
+        if (!hasInternal(r)) { throw new Error('Base.or expects an array of Constraints'); }
+        return r[internal];
+      }),
     });
     return Node_Void(root);
   },
