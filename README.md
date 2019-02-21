@@ -27,6 +27,8 @@ config.port     // Will ALWAYS be valid
 config.env      // Will ALWAYS be valid
 ```
 
+__Help me help you:__ <a href="https://www.buymeacoffee.com/fEvx1NCoS" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
 # Install
 
 __Latest:__ [`npm install recordari`](https://www.npmjs.com/package/recordari) <br>
